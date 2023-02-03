@@ -25,9 +25,9 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: "35180651+smhendrickson@users.noreply.github.com"
+    fullname: Scott Hendrickson
+    organization: Google
+    email: "scott@shendrickson.com"
 
 normative:
 
