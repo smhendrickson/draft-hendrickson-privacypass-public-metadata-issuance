@@ -23,7 +23,7 @@ title: "Public Metadata Issuance"
 abbrev: "Public Metadata Issuance"
 category: info
 
-docname: draft-hendrickson-privacypass-public-metadata-issuance
+docname: draft-hendrickson-privacypass-public-metadata-issuance-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
