@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Security"
+workgroup: "Privacy Pass"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Privacy Pass"
+  type: "Working Group"
+  mail: "privacy-pass@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/privacy-pass/"
+  github: "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance"
+  latest: "https://smhendrickson.github.io/draft-hendrickson-privacypass-public-metadata-issuance/draft-hendrickson-privacypass-public-metadata-issuance.html"
 
 author:
  -
