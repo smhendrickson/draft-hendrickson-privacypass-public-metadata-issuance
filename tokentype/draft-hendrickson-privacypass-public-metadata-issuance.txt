@@ -1,0 +1,382 @@
+
+
+
+
+Privacy Pass                                              S. Hendrickson
+Internet-Draft                                                    Google
+Intended status: Informational                           7 February 2023
+Expires: 11 August 2023
+
+
+                        Public Metadata Issuance
+     draft-hendrickson-privacypass-public-metadata-issuance-latest
+
+Abstract
+
+   TODO Abstract
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://smhendrickson.github.io/draft-hendrickson-privacypass-public-
+   metadata-issuance/draft-hendrickson-privacypass-public-metadata-
+   issuance.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-hendrickson-privacypass-
+   public-metadata-issuance/.
+
+   Discussion of this document takes place on the Privacy Pass Working
+   Group mailing list (mailto:privacy-pass@ietf.org), which is archived
+   at https://mailarchive.ietf.org/arch/browse/privacy-pass/.  Subscribe
+   at https://www.ietf.org/mailman/listinfo/privacy-pass/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/smhendrickson/draft-hendrickson-privacypass-
+   public-metadata-issuance.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 11 August 2023.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Terminology
+   3.  Issuance Protocol for Publicly Verifiable Tokens
+     3.1.  Client-to-Issuer Request
+     3.2.  Issuer-to-Client Response
+     3.3.  Finalization
+     3.4.  Token Verification
+     3.5.  Issuer Configuration
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Introduction
+
+   TODO Introduction
+
+2.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   The following terms are used throughout this document.
+
+   *  Public Metadata: Arbitrary length metadata that can be viewed by
+      the client, attester, issuer, and verifier.  After signing
+      metadata is bound to the token & signature and cannot be mutated
+      as described in TODO_link_crypto_draft.  In literature this may
+      also be referred to as 'partial blinding'.  We will refer to it as
+      public metadata throughout this draft and privacy pass.
+
+3.  Issuance Protocol for Publicly Verifiable Tokens
+
+   This section describes a variant of the issuance protocol in
+   Section 6 of [PROTOCOL] for producing publicly verifiable tokens
+   including public metadata using [PBLINDRSA].  In particular, this
+   variant of the issuance protocol works for the TODO_insert_variants
+   of the blind RSA protocol variants described in Section 5 of
+   [BLINDRSA].
+
+   The public metadata issuance protocol differs from the protocol in
+   Section 6 of [PROTOCOL] in that the tokens (both before and after
+   signing) contain metadata set by the client that is visible to the
+   signer (issuer) and verifier.  This means any Client can set metadata
+   on a token.  Any issuer or verifier may reject the token by aborting
+   the protocol, but cannot set or mutate the metadata.
+
+   Beyond this difference, the publicly metadata issuance protocol
+   variant is nearly identical to the publicy verifiable issuance
+   protocol variant.  In particular, Issuers provide a Private and
+   Public Key, denoted skI and pkI, respectively, used to produce tokens
+   as input to the protocol.  See Section 6.5 of [PROTOCOL] for how this
+   key pair is generated.
+
+   Clients provide the following as input to the issuance protocol:
+
+   *  Issuer Request URI: A URI to which token request messages are
+      sent.  This can be a URL derived from the "issuer-request-uri"
+      value in the Issuer's directory resource, or it can be another
+      Client-configured URL.  The value of this parameter depends on the
+      Client configuration and deployment model.  For example, in the
+      'Split Origin, Attester, Issuer' deployment model, the Issuer
+      Request URI might be correspond to the Client's configured
+      Attester, and the Attester is configured to relay requests to the
+      Issuer.
+
+   *  Issuer name: An identifier for the Issuer.  This is typically a
+      host name that can be used to construct HTTP requests to the
+      Issuer.
+
+   *  Issuer Public Key: pkI, with a key identifier token_key_id
+      computed as described in Section 3.5.
+
+   *  Challenge value: challenge, an opaque byte string.  For example,
+      this might be provided by the redemption protocol in [AUTHSCHEME].
+
+   *  Metadata value: metadata, an opaque byte string.
+
+   Given this configuration and these inputs, the two messages exchanged
+   in this protocol are described below.  The constant Nk is defined as
+   token type 0x1234 in [PROTOCOL].
+
+3.1.  Client-to-Issuer Request
+
+   The Client first creates an issuance request message for a random
+   value nonce using the input challenge and Issuer key identifier as
+   follows:
+
+   nonce = random(32)
+   challenge_digest = SHA256(challenge)
+   token_input = concat(0x1234, // Token type field is 2 bytes long
+                        nonce,
+                        challenge_digest,
+                        token_key_id)
+   blinded_msg, blind_inv =
+     Blind(pkI, metadata, PrepareIdentity(token_input))
+
+   The PrepareIdentity and Blind functions are defined in [PBLINDRSA]
+   and [PBLINDRSA], respectively.  The Client stores the nonce,
+   challenge_digest, and metadata values locally for use when finalizing
+   the issuance protocol to produce a token (as described in
+   Section 3.3).
+
+   The Client then creates a TokenRequest structured as follows:
+
+struct {
+  uint16_t token_type = 0x1234; /* Type Public Metadata Blind RSA (2048-bit) */
+  uint8_t truncated_token_key_id;
+  opaque metadata<1..2^16-1>;
+  uint8_t blinded_msg[Nk];
+} TokenRequest;
+
+   The structure fields are defined as follows:
+
+   *  "token_type" is a 2-octet integer, which matches the type in the
+      challenge.
+
+   *  "truncated_token_key_id" is the least significant byte of the
+      token_key_id (Section 3.5) in network byte order (in other words,
+      the last 8 bits of token_key_id).
+
+   *  "metadata" is the opaque metadata value that all blinded_msg
+      values are encoded for.
+
+   *  "blinded_msg" is the Nk-octet request defined above.
+
+   The Client then generates an HTTP POST request to send to the Issuer
+   Request URI, with the TokenRequest as the content.  The media type
+   for this request is "application/private-token-request".  An example
+   request is shown below:
+
+   :method = POST
+   :scheme = https
+   :authority = issuer.example.net
+   :path = /request
+   accept = application/private-token-response
+   cache-control = no-cache, no-store
+   content-type = application/private-token-request
+   content-length = <Length of TokenRequest>
+
+   <Bytes containing the TokenRequest>
+
+3.2.  Issuer-to-Client Response
+
+   Upon receipt of the request, the Issuer validates the following
+   conditions:
+
+   *  The TokenRequest contains a supported token_type.
+
+   *  The TokenRequest.truncated_token_key_id corresponds to the
+      truncated key ID of an Issuer Public Key.
+
+   *  The TokenRequest.blinded_msg is of the correct size.
+
+   *  The TokenREquest.metadata satisfies issuer requirements.
+
+   If any of these conditions is not met, the Issuer MUST return an HTTP
+   400 error to the Client, which will forward the error to the client.
+   Otherwise, if the Issuer is willing to produce a token token to the
+   Client, the Issuer completes the issuance flow by computing a blinded
+   response as follows:
+
+   blind_sig = BlindSign(skI, metadata, TokenRequest.blinded_msg)
+
+   The BlindSign function is defined in [PBLINDRSA].  The result is
+   encoded and transmitted to the client in the following TokenResponse
+   structure:
+
+   struct {
+     uint8_t blind_sig[Nk];
+   } TokenResponse;
+
+   The Issuer generates an HTTP response with status code 200 whose
+   content consists of TokenResponse, with the content type set as
+   "application/private-token-response".
+
+   :status = 200
+   content-type = application/private-token-response
+   content-length = <Length of TokenResponse>
+
+   <Bytes containing the TokenResponse>
+
+3.3.  Finalization
+
+   Upon receipt, the Client handles the response and, if successful,
+   processes the content as follows:
+
+   authenticator =
+     Finalize(pkI, nonce, metadata, blind_sig, blind_inv)
+
+   The Finalize function is defined in [PBLINDRSA].  If this succeeds,
+   the Client then constructs a Token as described in [AUTHSCHEME] as
+   follows:
+
+   struct {
+     uint16_t token_type = 0x1234; /* Type Blind RSA (2048-bit) */
+     opaque metadata<1..2^16-1>;
+     uint8_t nonce[32];
+     uint8_t challenge_digest[32];
+     uint8_t token_key_id[32];
+     uint8_t authenticator[Nk];
+   } Token;
+
+   The Token.nonce value is that which was sampled in Section 5.1 of
+   [PROTOCOL].  If the Finalize function fails, the Client aborts the
+   protocol.
+
+3.4.  Token Verification
+
+   TODO(shendrick): Replace this entire section with a correct
+   verification description
+
+   Verifying a Token requires checking that Token.authenticator is a
+   valid signature over the remainder of the token input using the
+   Issuer Public Key. The function RSASSA-PSS-VERIFY is defined in
+   Section 8.1.2 of !RFC8017}}, using SHA-384 as the Hash function, MGF1
+   with SHA-384 as the PSS mask generation function (MGF), and a 48-byte
+   salt length (sLen).
+
+   token_authenticator_input =
+     concat(Token.token_type,
+            Token.nonce,
+            Token.challenge_digest,
+            Token.token_key_id)
+   valid = RSASSA-PSS-VERIFY(pkI,
+                             token_authenticator_input,
+                             Token.authenticator)
+
+3.5.  Issuer Configuration
+
+   Issuers are configured with Private and Public Key pairs, each
+   denoted skI and pkI, respectively, used to produce tokens.  Each key
+   pair SHALL be generated as as specified in FIPS 186-4 [DSS], where n
+   is 4096 bits in length.  These key pairs MUST NOT be reused in other
+   protocols.
+
+   The key identifier for a keypair (skI, pkI), denoted token_key_id, is
+   computed as SHA256(encoded_key), where encoded_key is a DER-encoded
+   SubjectPublicKeyInfo (SPKI) object carrying pkI.  The SPKI object
+   MUST use the RSASSA-PSS OID [RFC5756], which specifies the hash
+   algorithm and salt size.  The salt size MUST match the output size of
+   the hash function associated with the public key and token type.
+
+   Since Clients truncate token_key_id in each TokenRequest, Issuers
+   should ensure that the truncated form of new key IDs do not collide
+   with other truncated key IDs in rotation.
+
+4.  Security Considerations
+
+   TODO Security
+
+5.  IANA Considerations
+
+   This document has no IANA actions.
+
+6.  References
+
+6.1.  Normative References
+
+   [BLINDRSA] Denis, F., Jacobs, F., and C. A. Wood, "RSA Blind
+              Signatures", Work in Progress, Internet-Draft, draft-irtf-
+              cfrg-rsa-blind-signatures-07, 8 December 2022,
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              rsa-blind-signatures-07>.
+
+   [PBLINDRSA]
+              "Public Metadata Blind RSA TODO LINK", n.d.,
+              <https://www.example.com/>.
+
+   [PROTOCOL] Celi, S., Davidson, A., Faz-Hernandez, A., Valdez, S., and
+              C. A. Wood, "Privacy Pass Issuance Protocol", Work in
+              Progress, Internet-Draft, draft-ietf-privacypass-protocol-
+              08, 30 January 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-protocol-08>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC5756]  Turner, S., Brown, D., Yiu, K., Housley, R., and T. Polk,
+              "Updates for RSAES-OAEP and RSASSA-PSS Algorithm
+              Parameters", RFC 5756, DOI 10.17487/RFC5756, January 2010,
+              <https://www.rfc-editor.org/rfc/rfc5756>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+6.2.  Informative References
+
+   [DSS]      "Digital Signature Standard (DSS)", National Institute of
+              Standards and Technology report,
+              DOI 10.6028/nist.fips.186-4, July 2013,
+              <https://doi.org/10.6028/nist.fips.186-4>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Author's Address
+
+   Scott Hendrickson
+   Google
+   Email: scott@shendrickson.com
