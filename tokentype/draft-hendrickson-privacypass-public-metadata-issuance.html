@@ -1251,7 +1251,7 @@ described in <a href="#public-issuer-configuration" class="auto internal xref">S
         <li class="normal" id="section-3-5.4">Challenge value: <code>challenge</code>, an opaque byte string. For example, this might
 be provided by the redemption protocol in [AUTHSCHEME].<a href="#section-3-5.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-5.5">Metadata value: <code>metadata</code>, an opaque byte string.<a href="#section-3-5.5" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-5.5">Metadata value: <code>metadata</code>, an opaque byte string of length at most 2<sup>16-1</sup> bytes.<a href="#section-3-5.5" class="pilcrow">¶</a>
 </li>
       </ul>
 <p id="section-3-6">Given this configuration and these inputs, the two messages exchanged in
