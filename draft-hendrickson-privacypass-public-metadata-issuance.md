@@ -85,7 +85,7 @@ Clients provide the following as input to the issuance protocol:
   described in {{public-issuer-configuration}}.
 - Challenge value: `challenge`, an opaque byte string. For example, this might
   be provided by the redemption protocol in [AUTHSCHEME].
-- Metadata value: `metadata`, an opaque byte string.
+- Metadata value: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.
 
 Given this configuration and these inputs, the two messages exchanged in
 this protocol are described below. The constant `Nk` is defined as token type 0x1234 in
