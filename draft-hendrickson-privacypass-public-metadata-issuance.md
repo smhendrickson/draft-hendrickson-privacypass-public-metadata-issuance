@@ -88,7 +88,7 @@ Clients provide the following as input to the issuance protocol:
 - Metadata value: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.
 
 Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below. The constant `Nk` is defined as token type 0x1234 in
+this protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234 in
 {{PROTOCOL}}.
 
 ## Client-to-Issuer Request {#public-request}
@@ -100,6 +100,8 @@ The Client first creates an issuance request message for a random value
 nonce = random(32)
 challenge_digest = SHA256(challenge)
 token_input = concat(0x1234, // Token type field is 2 bytes long
+                     len_in_bytes(metadata), // 2-byte length of metadata
+                     metadata,
                      nonce,
                      challenge_digest,
                      token_key_id)
