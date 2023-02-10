@@ -333,9 +333,9 @@ struct {
 
    [BLINDRSA] Denis, F., Jacobs, F., and C. A. Wood, "RSA Blind
               Signatures", Work in Progress, Internet-Draft, draft-irtf-
-              cfrg-rsa-blind-signatures-07, 8 December 2022,
+              cfrg-rsa-blind-signatures-09, 1 February 2023,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              rsa-blind-signatures-07>.
+              rsa-blind-signatures-09>.
 
    [PBLINDRSA]
               "Public Metadata Blind RSA TODO LINK", n.d.,
