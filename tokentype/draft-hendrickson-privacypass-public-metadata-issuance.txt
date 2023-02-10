@@ -157,7 +157,7 @@ Table of Contents
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.  The constant Nk is defined as
-   token type 0x1234 in [PROTOCOL].
+   256 for token type 0x1234 in [PROTOCOL].
 
 3.1.  Client-to-Issuer Request
 
@@ -165,14 +165,16 @@ Table of Contents
    value nonce using the input challenge and Issuer key identifier as
    follows:
 
-   nonce = random(32)
-   challenge_digest = SHA256(challenge)
-   token_input = concat(0x1234, // Token type field is 2 bytes long
-                        nonce,
-                        challenge_digest,
-                        token_key_id)
-   blinded_msg, blind_inv =
-     Blind(pkI, metadata, PrepareIdentity(token_input))
+nonce = random(32)
+challenge_digest = SHA256(challenge)
+token_input = concat(0x1234, // Token type field is 2 bytes long
+                     len_in_bytes(metadata), // 2-byte length of metadata
+                     metadata,
+                     nonce,
+                     challenge_digest,
+                     token_key_id)
+blinded_msg, blind_inv =
+  Blind(pkI, metadata, PrepareIdentity(token_input))
 
    The PrepareIdentity and Blind functions are defined in [PBLINDRSA]
    and [PBLINDRSA], respectively.  The Client stores the nonce,

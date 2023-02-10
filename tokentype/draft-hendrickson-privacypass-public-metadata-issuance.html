@@ -1255,7 +1255,7 @@ be provided by the redemption protocol in [AUTHSCHEME].<a href="#section-3-5.4" 
 </li>
       </ul>
 <p id="section-3-6">Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below. The constant <code>Nk</code> is defined as token type 0x1234 in
+this protocol are described below. The constant <code>Nk</code> is defined as 256 for token type 0x1234 in
 <span>[<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span>.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <div id="public-request">
 <section id="section-3.1">
@@ -1269,6 +1269,8 @@ this protocol are described below. The constant <code>Nk</code> is defined as to
 nonce = random(32)
 challenge_digest = SHA256(challenge)
 token_input = concat(0x1234, // Token type field is 2 bytes long
+                     len_in_bytes(metadata), // 2-byte length of metadata
+                     metadata,
                      nonce,
                      challenge_digest,
                      token_key_id)
