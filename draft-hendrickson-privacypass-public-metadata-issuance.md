@@ -62,7 +62,7 @@ In particular, this variant of the issuance protocol works for the
 TODO_insert_variants of the blind RSA protocol variants described in {{Section 5 of BLINDRSA}}.
 
 The public metadata issuance protocol differs from the protocol in
-{{Section 6 of PROTOCOL}} in that the tokens (both before and after signing) contain metadata set by the client that is visible to the signer (issuer) and verifier. This means any Client can set metadata on a token. Any issuer or verifier may reject the token by aborting the protocol, but cannot set or mutate the metadata.
+{{Section 6 of PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by either Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
 
 Beyond this difference, the publicly metadata issuance protocol variant is
 nearly identical to the publicy verifiable issuance protocol variant. In
