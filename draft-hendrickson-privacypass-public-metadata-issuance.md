@@ -28,8 +28,8 @@ author:
     email: "scott@shendrickson.com"
 
 normative:
-  PROTOCOL: I-D.draft-ietf-privacypass-protocol-08
-  BLINDRSA: I-D.draft-irtf-cfrg-rsa-blind-signatures-07
+  PROTOCOL: I-D.draft-ietf-privacypass-protocol
+  BLINDRSA: I-D.draft-irtf-cfrg-rsa-blind-signatures
   PBLINDRSA:
     title: Public Metadata Blind RSA TODO LINK
     target: https://www.example.com/
