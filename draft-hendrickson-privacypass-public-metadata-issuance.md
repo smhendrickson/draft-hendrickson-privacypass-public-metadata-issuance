@@ -128,7 +128,7 @@ The structure fields are defined as follows:
   ({{public-issuer-configuration}}) in network byte order (in other words, the
   last 8 bits of `token_key_id`).
 
-- "metadata" is the opaque metadata value that all `blinded_msg` values are encoded for.
+- "metadata" is the opaque metadata value that the `blinded_msg` value is encoded for.
 
 - "blinded_msg" is the Nk-octet request defined above.
 
