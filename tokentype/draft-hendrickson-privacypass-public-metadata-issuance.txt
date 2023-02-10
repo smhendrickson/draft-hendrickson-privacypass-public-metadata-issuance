@@ -71,11 +71,10 @@ Table of Contents
    1.  Introduction
    2.  Terminology
    3.  Issuance Protocol for Publicly Verifiable Tokens
-     3.1.  Client-to-Issuer Request
-     3.2.  Issuer-to-Client Response
-     3.3.  Finalization
-     3.4.  Token Verification
-     3.5.  Issuer Configuration
+     3.1.  Issuer-to-Client Response
+     3.2.  Finalization
+     3.3.  Token Verification
+     3.4.  Issuer Configuration
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -99,11 +98,11 @@ Table of Contents
    The following terms are used throughout this document.
 
    *  Public Metadata: Arbitrary length metadata that can be viewed by
-      the client, attester, issuer, and verifier.  After signing
-      metadata is bound to the token & signature and cannot be mutated
-      as described in TODO_link_crypto_draft.  In literature this may
-      also be referred to as 'partial blinding'.  We will refer to it as
-      public metadata throughout this draft and privacy pass.
+      the Client, Attester, Issuer, and Origin.  After signing metadata
+      is bound to Tokens issued by the Issuer and therefore cannot be
+      changed.  In literature this may also be referred to as 'partial
+      blinding'.  We will refer to it as public metadata throughout this
+      draft and privacy pass.
 
 3.  Issuance Protocol for Publicly Verifiable Tokens
 
@@ -119,16 +118,11 @@ Table of Contents
    carry metadata provided by the Client and visible to the Attester,
    Issuer, and Origin.  This means Clients can set arbitrary metadata
    when requesting a token, but specific values of metadata may be
-   rejected by either Attester, Issuer, or Origin.  Similar to a token
+   rejected by any of Attester, Issuer, or Origin.  Similar to a token
    nonce, metadata is cryptographically bound to a token and cannot be
    altered.
 
-   Beyond this difference, the publicly metadata issuance protocol
-   variant is nearly identical to the publicy verifiable issuance
-   protocol variant.  In particular, Issuers provide a Private and
-   Public Key, denoted skI and pkI, respectively, used to produce tokens
-   as input to the protocol.  See Section 6.5 of [PROTOCOL] for how this
-   key pair is generated.
+   TODO(shendrick): Include details for [PBLINDRSA] token generation.
 
    Clients provide the following as input to the issuance protocol:
 
@@ -147,7 +141,7 @@ Table of Contents
       Issuer.
 
    *  Issuer Public Key: pkI, with a key identifier token_key_id
-      computed as described in Section 3.5.
+      computed as described in Section 3.4.
 
    *  Challenge value: challenge, an opaque byte string.  For example,
       this might be provided by the redemption protocol in [AUTHSCHEME].
@@ -157,9 +151,8 @@ Table of Contents
 
    Given this configuration and these inputs, the two messages exchanged
    in this protocol are described below.  The constant Nk is defined as
-   256 for token type 0x1234 in [PROTOCOL].
-
-3.1.  Client-to-Issuer Request
+   256 for token type 0x1234. ## Client-to-Issuer Request {#public-
+   request}
 
    The Client first creates an issuance request message for a random
    value nonce using the input challenge and Issuer key identifier as
@@ -180,7 +173,7 @@ blinded_msg, blind_inv =
    and [PBLINDRSA], respectively.  The Client stores the nonce,
    challenge_digest, and metadata values locally for use when finalizing
    the issuance protocol to produce a token (as described in
-   Section 3.3).
+   Section 3.2).
 
    The Client then creates a TokenRequest structured as follows:
 
@@ -197,7 +190,7 @@ struct {
       challenge.
 
    *  "truncated_token_key_id" is the least significant byte of the
-      token_key_id (Section 3.5) in network byte order (in other words,
+      token_key_id (Section 3.4) in network byte order (in other words,
       the last 8 bits of token_key_id).
 
    *  "metadata" is the opaque metadata value that all blinded_msg
@@ -221,7 +214,7 @@ struct {
 
    <Bytes containing the TokenRequest>
 
-3.2.  Issuer-to-Client Response
+3.1.  Issuer-to-Client Response
 
    Upon receipt of the request, the Issuer validates the following
    conditions:
@@ -261,7 +254,7 @@ struct {
 
    <Bytes containing the TokenResponse>
 
-3.3.  Finalization
+3.2.  Finalization
 
    Upon receipt, the Client handles the response and, if successful,
    processes the content as follows:
@@ -274,7 +267,7 @@ struct {
    follows:
 
    struct {
-     uint16_t token_type = 0x1234; /* Type Blind RSA (2048-bit) */
+     uint16_t token_type = 0x1234; /* Type Blind RSA (4096-bit) */
      opaque metadata<1..2^16-1>;
      uint8_t nonce[32];
      uint8_t challenge_digest[32];
@@ -286,7 +279,7 @@ struct {
    [PROTOCOL].  If the Finalize function fails, the Client aborts the
    protocol.
 
-3.4.  Token Verification
+3.3.  Token Verification
 
    TODO(shendrick): Replace this entire section with a correct
    verification description
@@ -307,7 +300,7 @@ struct {
                              token_authenticator_input,
                              Token.authenticator)
 
-3.5.  Issuer Configuration
+3.4.  Issuer Configuration
 
    Issuers are configured with Private and Public Key pairs, each
    denoted skI and pkI, respectively, used to produce tokens.  Each key

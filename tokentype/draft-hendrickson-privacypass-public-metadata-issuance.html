@@ -1148,19 +1148,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-issuance-protocol-for-publi" class="internal xref">Issuance Protocol for Publicly Verifiable Tokens</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-client-to-issuer-request" class="internal xref">Client-to-Issuer Request</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-issuer-to-client-response" class="internal xref">Issuer-to-Client Response</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-issuer-to-client-response" class="internal xref">Issuer-to-Client Response</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-finalization" class="internal xref">Finalization</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-finalization" class="internal xref">Finalization</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-token-verification" class="internal xref">Token Verification</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-token-verification" class="internal xref">Token Verification</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-issuer-configuration" class="internal xref">Issuer Configuration</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-issuer-configuration" class="internal xref">Issuer Configuration</a></p>
 </li>
             </ul>
 </li>
@@ -1211,7 +1208,7 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The following terms are used throughout this document.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2-3.1">Public Metadata: Arbitrary length metadata that can be viewed by the client, attester, issuer, and verifier. After signing metadata is bound to the token &amp; signature and cannot be mutated as described in TODO_link_crypto_draft. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft and privacy pass.<a href="#section-2-3.1" class="pilcrow">¶</a>
+<li class="normal" id="section-2-3.1">Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. After signing metadata is bound to Tokens issued by the Issuer and therefore cannot be changed. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft and privacy pass.<a href="#section-2-3.1" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>
@@ -1226,12 +1223,8 @@ for producing publicly verifiable tokens including public metadata using <span>[
 In particular, this variant of the issuance protocol works for the
 TODO_insert_variants of the blind RSA protocol variants described in <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-rsa-blind-signatures-07#section-5" class="relref">Section 5</a> of [<a href="#BLINDRSA" class="cite xref">BLINDRSA</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The public metadata issuance protocol differs from the protocol in
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#section-6" class="relref">Section 6</a> of [<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span> in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by either Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Beyond this difference, the publicly metadata issuance protocol variant is
-nearly identical to the publicy verifiable issuance protocol variant. In
-particular, Issuers provide a Private and Public Key, denoted skI and pkI,
-respectively, used to produce tokens as input to the protocol. See
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#section-6.5" class="relref">Section 6.5</a> of [<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span> for how this key pair is generated.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#section-6" class="relref">Section 6</a> of [<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span> in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">TODO(shendrick): Include details for <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span> token generation.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">Clients provide the following as input to the issuance protocol:<a href="#section-3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-5.1">Issuer Request URI: A URI to which token request messages are sent. This can
@@ -1246,7 +1239,7 @@ and the Attester is configured to relay requests to the Issuer.<a href="#section
 can be used to construct HTTP requests to the Issuer.<a href="#section-3-5.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-3-5.3">Issuer Public Key: <code>pkI</code>, with a key identifier <code>token_key_id</code> computed as
-described in <a href="#public-issuer-configuration" class="auto internal xref">Section 3.5</a>.<a href="#section-3-5.3" class="pilcrow">¶</a>
+described in <a href="#public-issuer-configuration" class="auto internal xref">Section 3.4</a>.<a href="#section-3-5.3" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-3-5.4">Challenge value: <code>challenge</code>, an opaque byte string. For example, this might
 be provided by the redemption protocol in [AUTHSCHEME].<a href="#section-3-5.4" class="pilcrow">¶</a>
@@ -1255,16 +1248,11 @@ be provided by the redemption protocol in [AUTHSCHEME].<a href="#section-3-5.4" 
 </li>
       </ul>
 <p id="section-3-6">Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below. The constant <code>Nk</code> is defined as 256 for token type 0x1234 in
-<span>[<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span>.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<div id="public-request">
-<section id="section-3.1">
-        <h3 id="name-client-to-issuer-request">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-client-to-issuer-request" class="section-name selfRef">Client-to-Issuer Request</a>
-        </h3>
-<p id="section-3.1-1">The Client first creates an issuance request message for a random value
-<code>nonce</code> using the input challenge and Issuer key identifier as follows:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.1-2">
+this protocol are described below. The constant <code>Nk</code> is defined as 256 for token type 0x1234.
+## Client-to-Issuer Request {#public-request}<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-7">The Client first creates an issuance request message for a random value
+<code>nonce</code> using the input challenge and Issuer key identifier as follows:<a href="#section-3-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-8">
 <pre>
 nonce = random(32)
 challenge_digest = SHA256(challenge)
@@ -1276,15 +1264,15 @@ token_input = concat(0x1234, // Token type field is 2 bytes long
                      token_key_id)
 blinded_msg, blind_inv =
   Blind(pkI, metadata, PrepareIdentity(token_input))
-</pre><a href="#section-3.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-3-8" class="pilcrow">¶</a>
 </div>
-<p id="section-3.1-3">The PrepareIdentity and Blind functions are defined in
+<p id="section-3-9">The PrepareIdentity and Blind functions are defined in
 <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span> and <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span>, respectively.
 The Client stores the nonce, challenge_digest, and metadata values locally for use
 when finalizing the issuance protocol to produce a token (as described
-in <a href="#public-finalize" class="auto internal xref">Section 3.3</a>).<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">The Client then creates a TokenRequest structured as follows:<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.1-5">
+in <a href="#public-finalize" class="auto internal xref">Section 3.2</a>).<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-10">The Client then creates a TokenRequest structured as follows:<a href="#section-3-10" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-11">
 <pre>
 struct {
   uint16_t token_type = 0x1234; /* Type Public Metadata Blind RSA (2048-bit) */
@@ -1292,25 +1280,25 @@ struct {
   opaque metadata&lt;1..2^16-1&gt;;
   uint8_t blinded_msg[Nk];
 } TokenRequest;
-</pre><a href="#section-3.1-5" class="pilcrow">¶</a>
+</pre><a href="#section-3-11" class="pilcrow">¶</a>
 </div>
-<p id="section-3.1-6">The structure fields are defined as follows:<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3-12">The structure fields are defined as follows:<a href="#section-3-12" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-7.1">"token_type" is a 2-octet integer, which matches the type in the challenge.<a href="#section-3.1-7.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3-13.1">"token_type" is a 2-octet integer, which matches the type in the challenge.<a href="#section-3-13.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-7.2">"truncated_token_key_id" is the least significant byte of the <code>token_key_id</code>
-(<a href="#public-issuer-configuration" class="auto internal xref">Section 3.5</a>) in network byte order (in other words, the
-last 8 bits of <code>token_key_id</code>).<a href="#section-3.1-7.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-13.2">"truncated_token_key_id" is the least significant byte of the <code>token_key_id</code>
+(<a href="#public-issuer-configuration" class="auto internal xref">Section 3.4</a>) in network byte order (in other words, the
+last 8 bits of <code>token_key_id</code>).<a href="#section-3-13.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-7.3">"metadata" is the opaque metadata value that all <code>blinded_msg</code> values are encoded for.<a href="#section-3.1-7.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-13.3">"metadata" is the opaque metadata value that all <code>blinded_msg</code> values are encoded for.<a href="#section-3-13.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-7.4">"blinded_msg" is the Nk-octet request defined above.<a href="#section-3.1-7.4" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-13.4">"blinded_msg" is the Nk-octet request defined above.<a href="#section-3-13.4" class="pilcrow">¶</a>
 </li>
-        </ul>
-<p id="section-3.1-8">The Client then generates an HTTP POST request to send to the Issuer Request
+      </ul>
+<p id="section-3-14">The Client then generates an HTTP POST request to send to the Issuer Request
 URI, with the TokenRequest as the content. The media type for this request
-is "application/private-token-request". An example request is shown below:<a href="#section-3.1-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.1-9">
+is "application/private-token-request". An example request is shown below:<a href="#section-3-14" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3-15">
 <pre>
 :method = POST
 :scheme = https
@@ -1322,104 +1310,102 @@ content-type = application/private-token-request
 content-length = &lt;Length of TokenRequest&gt;
 
 &lt;Bytes containing the TokenRequest&gt;
-</pre><a href="#section-3.1-9" class="pilcrow">¶</a>
-</div>
-</section>
+</pre><a href="#section-3-15" class="pilcrow">¶</a>
 </div>
 <div id="public-response">
-<section id="section-3.2">
+<section id="section-3.1">
         <h3 id="name-issuer-to-client-response">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-issuer-to-client-response" class="section-name selfRef">Issuer-to-Client Response</a>
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-issuer-to-client-response" class="section-name selfRef">Issuer-to-Client Response</a>
         </h3>
-<p id="section-3.2-1">Upon receipt of the request, the Issuer validates the following conditions:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">Upon receipt of the request, the Issuer validates the following conditions:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-2.1">The TokenRequest contains a supported token_type.<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1-2.1">The TokenRequest contains a supported token_type.<a href="#section-3.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-2.2">The TokenRequest.truncated_token_key_id corresponds to the truncated key
-ID of an Issuer Public Key.<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.2">The TokenRequest.truncated_token_key_id corresponds to the truncated key
+ID of an Issuer Public Key.<a href="#section-3.1-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-2.3">The TokenRequest.blinded_msg is of the correct size.<a href="#section-3.2-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.3">The TokenRequest.blinded_msg is of the correct size.<a href="#section-3.1-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-2.4">The TokenREquest.metadata satisfies issuer requirements.<a href="#section-3.2-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.4">The TokenREquest.metadata satisfies issuer requirements.<a href="#section-3.1-2.4" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-3.2-3">If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
+<p id="section-3.1-3">If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
 to the Client, which will forward the error to the client. Otherwise, if the
 Issuer is willing to produce a token token to the Client, the Issuer
-completes the issuance flow by computing a blinded response as follows:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-4">
+completes the issuance flow by computing a blinded response as follows:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.1-4">
 <pre>
 blind_sig = BlindSign(skI, metadata, TokenRequest.blinded_msg)
-</pre><a href="#section-3.2-4" class="pilcrow">¶</a>
+</pre><a href="#section-3.1-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2-5">The BlindSign function is defined in <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span>.
+<p id="section-3.1-5">The BlindSign function is defined in <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span>.
 The result is encoded and transmitted to the client in the following
-TokenResponse structure:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-6">
+TokenResponse structure:<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.1-6">
 <pre>
 struct {
   uint8_t blind_sig[Nk];
 } TokenResponse;
-</pre><a href="#section-3.2-6" class="pilcrow">¶</a>
+</pre><a href="#section-3.1-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2-7">The Issuer generates an HTTP response with status code 200 whose content
+<p id="section-3.1-7">The Issuer generates an HTTP response with status code 200 whose content
 consists of TokenResponse, with the content type set as
-"application/private-token-response".<a href="#section-3.2-7" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-8">
+"application/private-token-response".<a href="#section-3.1-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.1-8">
 <pre>
 :status = 200
 content-type = application/private-token-response
 content-length = &lt;Length of TokenResponse&gt;
 
 &lt;Bytes containing the TokenResponse&gt;
-</pre><a href="#section-3.2-8" class="pilcrow">¶</a>
+</pre><a href="#section-3.1-8" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="public-finalize">
-<section id="section-3.3">
+<section id="section-3.2">
         <h3 id="name-finalization">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-finalization" class="section-name selfRef">Finalization</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-finalization" class="section-name selfRef">Finalization</a>
         </h3>
-<p id="section-3.3-1">Upon receipt, the Client handles the response and, if successful, processes the
-content as follows:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.3-2">
+<p id="section-3.2-1">Upon receipt, the Client handles the response and, if successful, processes the
+content as follows:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.2-2">
 <pre>
 authenticator =
   Finalize(pkI, nonce, metadata, blind_sig, blind_inv)
-</pre><a href="#section-3.3-2" class="pilcrow">¶</a>
+</pre><a href="#section-3.2-2" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3-3">The Finalize function is defined in <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span>. If this
+<p id="section-3.2-3">The Finalize function is defined in <span>[<a href="#PBLINDRSA" class="cite xref">PBLINDRSA</a>]</span>. If this
 succeeds, the Client then constructs a Token as described in [AUTHSCHEME] as
-follows:<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.3-4">
+follows:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.2-4">
 <pre>
 struct {
-  uint16_t token_type = 0x1234; /* Type Blind RSA (2048-bit) */
+  uint16_t token_type = 0x1234; /* Type Blind RSA (4096-bit) */
   opaque metadata&lt;1..2^16-1&gt;;
   uint8_t nonce[32];
   uint8_t challenge_digest[32];
   uint8_t token_key_id[32];
   uint8_t authenticator[Nk];
 } Token;
-</pre><a href="#section-3.3-4" class="pilcrow">¶</a>
+</pre><a href="#section-3.2-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3-5">The Token.nonce value is that which was sampled in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#section-5.1" class="relref">Section 5.1</a> of [<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span>.
-If the Finalize function fails, the Client aborts the protocol.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.2-5">The Token.nonce value is that which was sampled in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#section-5.1" class="relref">Section 5.1</a> of [<a href="#PROTOCOL" class="cite xref">PROTOCOL</a>]</span>.
+If the Finalize function fails, the Client aborts the protocol.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="token-verification">
-<section id="section-3.4">
+<section id="section-3.3">
         <h3 id="name-token-verification">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-token-verification" class="section-name selfRef">Token Verification</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-token-verification" class="section-name selfRef">Token Verification</a>
         </h3>
-<p id="section-3.4-1">TODO(shendrick): Replace this entire section with a correct verification description<a href="#section-3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.4-2">Verifying a Token requires checking that Token.authenticator is a valid
+<p id="section-3.3-1">TODO(shendrick): Replace this entire section with a correct verification description<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Verifying a Token requires checking that Token.authenticator is a valid
 signature over the remainder of the token input using the Issuer Public Key.
 The function <code>RSASSA-PSS-VERIFY</code> is defined in Section 8.1.2 of !RFC8017}},
 using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
-generation function (MGF), and a 48-byte salt length (sLen).<a href="#section-3.4-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.4-3">
+generation function (MGF), and a 48-byte salt length (sLen).<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.3-3">
 <pre>
 token_authenticator_input =
   concat(Token.token_type,
@@ -1429,28 +1415,28 @@ token_authenticator_input =
 valid = RSASSA-PSS-VERIFY(pkI,
                           token_authenticator_input,
                           Token.authenticator)
-</pre><a href="#section-3.4-3" class="pilcrow">¶</a>
+</pre><a href="#section-3.3-3" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="public-issuer-configuration">
-<section id="section-3.5">
+<section id="section-3.4">
         <h3 id="name-issuer-configuration">
-<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-issuer-configuration" class="section-name selfRef">Issuer Configuration</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-issuer-configuration" class="section-name selfRef">Issuer Configuration</a>
         </h3>
-<p id="section-3.5-1">Issuers are configured with Private and Public Key pairs, each denoted skI and
+<p id="section-3.4-1">Issuers are configured with Private and Public Key pairs, each denoted skI and
 pkI, respectively, used to produce tokens. Each key pair SHALL be generated as
 as specified in FIPS 186-4 <span>[<a href="#DSS" class="cite xref">DSS</a>]</span>, where n is 4096 bits in length. These key
-pairs MUST NOT be reused in other protocols.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.5-2">The key identifier for a keypair (skI, pkI), denoted <code>token_key_id</code>, is
+pairs MUST NOT be reused in other protocols.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">The key identifier for a keypair (skI, pkI), denoted <code>token_key_id</code>, is
 computed as SHA256(encoded_key), where encoded_key is a DER-encoded
 SubjectPublicKeyInfo (SPKI) object carrying pkI. The SPKI object MUST use the
 RSASSA-PSS OID <span>[<a href="#RFC5756" class="cite xref">RFC5756</a>]</span>, which specifies the hash algorithm and salt size.
 The salt size MUST match the output size of the hash function associated with
-the public key and token type.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.5-3">Since Clients truncate <code>token_key_id</code> in each <code>TokenRequest</code>, Issuers should
+the public key and token type.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">Since Clients truncate <code>token_key_id</code> in each <code>TokenRequest</code>, Issuers should
 ensure that the truncated form of new key IDs do not collide with other
-truncated key IDs in rotation.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+truncated key IDs in rotation.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
