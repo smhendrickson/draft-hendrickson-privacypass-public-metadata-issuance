@@ -52,7 +52,7 @@ TODO Introduction
 
 The following terms are used throughout this document.
 
-- Public Metadata: Arbitrary length metadata that can be viewed by the client, attester, issuer, and verifier. After signing metadata is bound to the token & signature and cannot be mutated as described in TODO_link_crypto_draft. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft and privacy pass.
+- Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. After signing metadata is bound to Tokens issued by the Issuer and therefore cannot be changed. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft and privacy pass.
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
 
@@ -62,13 +62,9 @@ In particular, this variant of the issuance protocol works for the
 TODO_insert_variants of the blind RSA protocol variants described in {{Section 5 of BLINDRSA}}.
 
 The public metadata issuance protocol differs from the protocol in
-{{Section 6 of PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by either Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
+{{Section 6 of PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
 
-Beyond this difference, the publicly metadata issuance protocol variant is
-nearly identical to the publicy verifiable issuance protocol variant. In
-particular, Issuers provide a Private and Public Key, denoted skI and pkI,
-respectively, used to produce tokens as input to the protocol. See
-{{Section 6.5 of PROTOCOL}} for how this key pair is generated.
+TODO(shendrick): Include details for {{PBLINDRSA}} token generation.
 
 Clients provide the following as input to the issuance protocol:
 
@@ -88,9 +84,7 @@ Clients provide the following as input to the issuance protocol:
 - Metadata value: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.
 
 Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234 in
-{{PROTOCOL}}.
-
+this protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234.
 ## Client-to-Issuer Request {#public-request}
 
 The Client first creates an issuance request message for a random value
@@ -212,7 +206,7 @@ follows:
 
 ~~~
 struct {
-  uint16_t token_type = 0x1234; /* Type Blind RSA (2048-bit) */
+  uint16_t token_type = 0x1234; /* Type Blind RSA (4096-bit) */
   opaque metadata<1..2^16-1>;
   uint8_t nonce[32];
   uint8_t challenge_digest[32];
