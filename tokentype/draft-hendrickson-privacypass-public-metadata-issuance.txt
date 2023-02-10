@@ -4,8 +4,8 @@
 
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
-Intended status: Informational                           7 February 2023
-Expires: 11 August 2023
+Intended status: Informational                          10 February 2023
+Expires: 14 August 2023
 
 
                         Public Metadata Issuance
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2023.
+   This Internet-Draft will expire on 14 August 2023.
 
 Copyright Notice
 
@@ -115,11 +115,13 @@ Table of Contents
    [BLINDRSA].
 
    The public metadata issuance protocol differs from the protocol in
-   Section 6 of [PROTOCOL] in that the tokens (both before and after
-   signing) contain metadata set by the client that is visible to the
-   signer (issuer) and verifier.  This means any Client can set metadata
-   on a token.  Any issuer or verifier may reject the token by aborting
-   the protocol, but cannot set or mutate the metadata.
+   Section 6 of [PROTOCOL] in that the issuance and redemption protocols
+   carry metadata provided by the Client and visible to the Attester,
+   Issuer, and Origin.  This means Clients can set arbitrary metadata
+   when requesting a token, but specific values of metadata may be
+   rejected by either Attester, Issuer, or Origin.  Similar to a token
+   nonce, metadata is cryptographically bound to a token and cannot be
+   altered.
 
    Beyond this difference, the publicly metadata issuance protocol
    variant is nearly identical to the publicy verifiable issuance
