@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-09T01:46:13.052733+00:00",
+  "timestamp": "2023-02-12T01:49:26.349825+00:00",
   "repo": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
   "labels": [
     {
@@ -63,13 +63,13 @@
       "labels": [],
       "body": "From the the protocol doc, section 6 [1]\r\n\r\n[1]: https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#name-issuance-protocol-for-publi",
       "createdAt": "2023-02-07T22:59:37Z",
-      "updatedAt": "2023-02-08T18:52:53Z",
+      "updatedAt": "2023-02-10T18:57:24Z",
       "baseRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
       "baseRefName": "main",
       "baseRefOid": "5cd9b00b9313e8c17a3fe0cdc58c76b7bef37bda",
       "headRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
       "headRefName": "tokentype",
-      "headRefOid": "d997bb49335eaccbc762e3dd73dc750932d364f1",
+      "headRefOid": "7ee88712c71e6d416e73c0933b4ecf48fff50f5b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -201,6 +201,162 @@
               "body": "I assume this key generation advice has to be updated still?",
               "createdAt": "2023-02-08T18:48:47Z",
               "updatedAt": "2023-02-08T18:52:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5M9jUm",
+          "commit": {
+            "abbreviatedOid": "d997bb4"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-09T14:05:47Z",
+          "updatedAt": "2023-02-09T14:05:48Z",
+          "comments": [
+            {
+              "originalPosition": 235,
+              "body": "Will review more after our summit, but do we need to add a new token type definition, to modify the table from the protocol document?",
+              "createdAt": "2023-02-09T14:05:47Z",
+              "updatedAt": "2023-02-09T14:05:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NFtU7",
+          "commit": {
+            "abbreviatedOid": "d997bb4"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T15:05:11Z",
+          "updatedAt": "2023-02-10T15:16:02Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "More generally wondering if we should avoid stacking references to other token types, and just redeclare type specific algorithm/structures in this document as well?",
+              "createdAt": "2023-02-10T15:05:11Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 57,
+              "body": "nit shouldn't it be: 2<sup>16</sup>-1?",
+              "createdAt": "2023-02-10T15:07:16Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "Can we drop the \"in {{PROTOCOL}}\" part?",
+              "createdAt": "2023-02-10T15:08:38Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 110,
+              "body": "More of a comment for the parent spec, but it seems a little odd we have a different identifier for the structure both in the media type and inside the TokenRequest (token_type) field? Was there a reason the media type is per token type?",
+              "createdAt": "2023-02-10T15:10:59Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 133,
+              "body": "We still should have some text saying that the issuer/attester can drop the token request if it has invalid values (where invalid values are defined by the deployment). Otherwise its not clear what parties have an option of denying a TokenRequest.",
+              "createdAt": "2023-02-10T15:12:33Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 182,
+              "body": "nit: Inconsistent with the comment on the TokenRequest token_type field.",
+              "createdAt": "2023-02-10T15:13:25Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 183,
+              "body": "Are we signing the authenticator over this value?",
+              "createdAt": "2023-02-10T15:15:52Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHYdT",
+          "commit": {
+            "abbreviatedOid": "119e08b"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:31:12Z",
+          "updatedAt": "2023-02-10T18:31:13Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "Replaced with a TODO that will review token generation, once that draft is ready.",
+              "createdAt": "2023-02-10T18:31:12Z",
+              "updatedAt": "2023-02-10T18:31:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHZUH",
+          "commit": {
+            "abbreviatedOid": "119e08b"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:34:17Z",
+          "updatedAt": "2023-02-10T18:34:18Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "I want to communicate that there aren't multiple metadata accepted for a batch of blinded_msg Tokens - the metadata is fixed for the batch of tokens. Thoughts on wording for this? ",
+              "createdAt": "2023-02-10T18:34:17Z",
+              "updatedAt": "2023-02-10T18:34:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHdNt",
+          "commit": {
+            "abbreviatedOid": "086a380"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:46:11Z",
+          "updatedAt": "2023-02-10T18:46:11Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "There is no concept of a \"batch\" in the issuance protocol. If you want to turn this into a batch oriented protocol, more changes would be needed.",
+              "createdAt": "2023-02-10T18:46:11Z",
+              "updatedAt": "2023-02-10T18:46:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHhmb",
+          "commit": {
+            "abbreviatedOid": "086a380"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:56:46Z",
+          "updatedAt": "2023-02-10T18:56:47Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "Agh you're right, I am mixing protocols. Updated to be singular.",
+              "createdAt": "2023-02-10T18:56:46Z",
+              "updatedAt": "2023-02-10T18:56:47Z"
             }
           ]
         }
