@@ -28,6 +28,7 @@ author:
     email: "scott@shendrickson.com"
 
 normative:
+  AUTHSCHEME: I-D.draft-ietf-privacypass-authscheme
   PROTOCOL: I-D.draft-ietf-privacypass-protocol
   PBLINDRSA: I-D.draft-amjad-cfrg-partially-blind-rsa
 
@@ -55,7 +56,7 @@ The following terms are used throughout this document.
 This section describes a variant of the issuance protocol in {{Section 6 of !PROTOCOL}}
 for producing publicly verifiable tokens including public metadata using cryptography specified in {{PBLINDRSA}}.
 In particular, this variant of the issuance protocol works for the
-RSAPBSSA-SHA384-PSS-Randomized variant of the blind RSA protocol variants described in {{Section 6 of !PBLINDRSA}}.
+`RSAPBSSA-SHA384-PSSZERO-Deterministic` or `RSAPBSSA-SHA384-PSS-Deterministic` variant of the blind RSA protocol variants described in {{Section 6 of !PBLINDRSA}}.
 
 The public metadata issuance protocol differs from the protocol in
 {{Section 6 of !PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
@@ -74,11 +75,11 @@ Clients provide the following as input to the issuance protocol:
 - Issuer Public Key: `pkI`, with a key identifier `token_key_id` computed as
   described in {{public-issuer-configuration}}.
 - Challenge value: `challenge`, an opaque byte string. For example, this might
-  be provided by the redemption protocol in [AUTHSCHEME].
+  be provided by the redemption protocol in {{AUTHSCHEME}}.
 - Metadata value: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.
 
 Given this configuration and these inputs, the two messages exchanged in
-this protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234.
+this protocol are described below. The constant `Nk` is defined as 256 for token type 0xDA7A.
 
 ## Client-to-Issuer Request {#public-request}
 
@@ -88,16 +89,16 @@ The Client first creates an issuance request message for a random value
 ~~~
 nonce = random(32)
 challenge_digest = SHA256(challenge)
-token_input = concat(0x1234, // Token type field is 2 bytes long
+token_input = concat(0xDA7A, // Token type field is 2 bytes long
                      len_in_bytes(metadata), // 2-byte length of metadata
                      metadata,
                      nonce,
                      challenge_digest,
                      token_key_id)
-blinded_msg, blind_inv = Blind(pkI, Prepare(token_input), metadata)
+blinded_msg, blind_inv = Blind(pkI, PrepareIdentity(token_input), metadata)
 ~~~
 
-Where  `Prepare` is defined in {{Section 4.1 of !PBLINDRSA}} and `Blind` is defined in {{Section 4.2 of !PBLINDRSA}}
+Where  `PrepareIdentity` is defined in {{Section 6 of !PBLINDRSA}} and `Blind` is defined in {{Section 4.2 of !PBLINDRSA}}
 
 The Client stores the nonce, challenge_digest, and metadata values locally for use
 when finalizing the issuance protocol to produce a token (as described
@@ -107,7 +108,7 @@ The Client then creates a TokenRequest structured as follows:
 
 ~~~
 struct {
-  uint16_t token_type = 0x1234; /* Type Public Metadata Blind RSA (2048-bit) */
+  uint16_t token_type = 0xDA7A; /* Type Public Metadata Blind RSA (2048-bit) */
   uint8_t truncated_token_key_id;
   opaque metadata<1..2^16-1>;
   uint8_t blinded_msg[Nk];
@@ -201,7 +202,7 @@ follows:
 
 ~~~
 struct {
-  uint16_t token_type = 0x1234; /* Type Blind RSA (4096-bit) */
+  uint16_t token_type = 0xDA7A; /* Type Partially Blind RSA (4096-bit) */
   opaque metadata<1..2^16-1>;
   uint8_t nonce[32];
   uint8_t challenge_digest[32];
@@ -214,8 +215,6 @@ The Token.nonce value is that which was sampled in {{Section 5.1 of PROTOCOL}}.
 If the Finalize function fails, the Client aborts the protocol.
 
 ## Token Verification
-
-TODO(shendrick): Replace this entire section with a correct verification description
 
 Verifying a Token requires checking that Token.authenticator is a valid
 signature over the remainder of the token input using the Augmented Issuer Public Key.
@@ -243,6 +242,8 @@ and message verification is redefined in {{Section 4.5 of !PBLINDRSA}}.
 The function `RSASSA-PSS-VERIFY` is defined in {{Section 8.1.2 of !RFC8017}},
 using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
 generation function (MGF), and a 48-byte salt length (sLen).
+
+
 
 
 ## Issuer Configuration {#public-issuer-configuration}
