@@ -170,7 +170,7 @@ TokenResponse structure:
 ~~~
 struct {
   uint8_t blind_sig[Nk];
-} TokenResponse;
+} MetadataTokenResponse;
 ~~~
 
 The Issuer generates an HTTP response with status code 200 whose content
