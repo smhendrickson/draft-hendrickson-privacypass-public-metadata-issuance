@@ -28,7 +28,7 @@ author:
     email: "scott@shendrickson.com"
 
 normative:
-  AUTHSCHEME: I-D.draft-ietf-privacypass-authscheme
+  AUTHSCHEME: I-D.draft-ietf-privacypass-auth-scheme
   PROTOCOL: I-D.draft-ietf-privacypass-protocol
   PBLINDRSA: I-D.draft-amjad-cfrg-partially-blind-rsa
 
