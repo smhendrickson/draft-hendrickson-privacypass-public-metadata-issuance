@@ -29,16 +29,12 @@ author:
 
 normative:
   PROTOCOL: I-D.draft-ietf-privacypass-protocol
-  BLINDRSA: I-D.draft-irtf-cfrg-rsa-blind-signatures
-  PBLINDRSA:
-    title: Public Metadata Blind RSA TODO LINK
-    target: https://www.example.com/
+  PBLINDRSA: I-D.draft-amjad-cfrg-partially-blind-rsa
 
 
 --- abstract
 
-TODO Abstract
-
+This document specifies a Privacy Pass token type that encodes public metadata visible to the Client, Attester, Issuer, and Origin.
 
 --- middle
 
@@ -52,19 +48,17 @@ TODO Introduction
 
 The following terms are used throughout this document.
 
-- Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. After signing metadata is bound to Tokens issued by the Issuer and therefore cannot be changed. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft and privacy pass.
+- Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. After signing metadata is bound to Tokens issued by the Issuer and therefore cannot be changed. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft.
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
 
-This section describes a variant of the issuance protocol in {{Section 6 of PROTOCOL}}
-for producing publicly verifiable tokens including public metadata using {{PBLINDRSA}}.
+This section describes a variant of the issuance protocol in {{Section 6 of !PROTOCOL}}
+for producing publicly verifiable tokens including public metadata using cryptography specified in {{PBLINDRSA}}.
 In particular, this variant of the issuance protocol works for the
-TODO_insert_variants of the blind RSA protocol variants described in {{Section 5 of BLINDRSA}}.
+RSAPBSSA-SHA384-PSS-Randomized variant of the blind RSA protocol variants described in {{Section 6 of !PBLINDRSA}}.
 
 The public metadata issuance protocol differs from the protocol in
-{{Section 6 of PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
-
-TODO(shendrick): Include details for {{PBLINDRSA}} token generation.
+{{Section 6 of !PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.
 
 Clients provide the following as input to the issuance protocol:
 
@@ -85,6 +79,7 @@ Clients provide the following as input to the issuance protocol:
 
 Given this configuration and these inputs, the two messages exchanged in
 this protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234.
+
 ## Client-to-Issuer Request {#public-request}
 
 The Client first creates an issuance request message for a random value
@@ -99,12 +94,11 @@ token_input = concat(0x1234, // Token type field is 2 bytes long
                      nonce,
                      challenge_digest,
                      token_key_id)
-blinded_msg, blind_inv =
-  Blind(pkI, metadata, PrepareIdentity(token_input))
+blinded_msg, blind_inv = Blind(pkI, Prepare(token_input), metadata)
 ~~~
 
-The PrepareIdentity and Blind functions are defined in
-{{PBLINDRSA}} and {{PBLINDRSA}}, respectively.
+Where  `Prepare` is defined in {{Section 4.1 of !PBLINDRSA}} and `Blind` is defined in {{Section 4.2 of !PBLINDRSA}}
+
 The Client stores the nonce, challenge_digest, and metadata values locally for use
 when finalizing the issuance protocol to produce a token (as described
 in {{public-finalize}}).
@@ -165,10 +159,11 @@ Issuer is willing to produce a token token to the Client, the Issuer
 completes the issuance flow by computing a blinded response as follows:
 
 ~~~
-blind_sig = BlindSign(skI, metadata, TokenRequest.blinded_msg)
+blind_sig = BlindSign(skI, TokenRequest.blinded_msg, metadata)
 ~~~
 
-The BlindSign function is defined in {{PBLINDRSA}}.
+Where  `BlindSign` is defined in {{Section 4.3 of !PBLINDRSA}}.
+
 The result is encoded and transmitted to the client in the following
 TokenResponse structure:
 
@@ -196,12 +191,12 @@ Upon receipt, the Client handles the response and, if successful, processes the
 content as follows:
 
 ~~~
-authenticator =
-  Finalize(pkI, nonce, metadata, blind_sig, blind_inv)
+authenticator = Finalize(pkI, nonce, metadata, blind_sig, blind_inv)
 ~~~
 
-The Finalize function is defined in {{PBLINDRSA}}. If this
-succeeds, the Client then constructs a Token as described in [AUTHSCHEME] as
+Where `Finalize` function is defined in {{Section 4.4 of !PBLINDRSA}}.
+
+If this succeeds, the Client then constructs a Token as described in [AUTHSCHEME] as
 follows:
 
 ~~~
@@ -223,28 +218,39 @@ If the Finalize function fails, the Client aborts the protocol.
 TODO(shendrick): Replace this entire section with a correct verification description
 
 Verifying a Token requires checking that Token.authenticator is a valid
-signature over the remainder of the token input using the Issuer Public Key.
-The function `RSASSA-PSS-VERIFY` is defined in Section 8.1.2 of !RFC8017}},
-using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
-generation function (MGF), and a 48-byte salt length (sLen).
+signature over the remainder of the token input using the Augmented Issuer Public Key.
 
 ~~~
+pkM = AugmentPublicKey(pkI, Token.metadata)
 token_authenticator_input =
   concat(Token.token_type,
          Token.nonce,
          Token.challenge_digest,
          Token.token_key_id)
-valid = RSASSA-PSS-VERIFY(pkI,
-                          token_authenticator_input,
+msg_prime =
+  concat("msg",
+         int_to_bytes(len(metadata), 4),
+         Token.metadata,
+         token_authenticator_input)
+valid = RSASSA-PSS-VERIFY(pkM,
+                          msg_prime,
                           Token.authenticator)
 ~~~
+
+Where `AugmentPublicKey` is defined in {{Section 4.6 of !PBLINDRSA}},
+and message verification is redefined in {{Section 4.5 of !PBLINDRSA}}.
+
+The function `RSASSA-PSS-VERIFY` is defined in {{Section 8.1.2 of !RFC8017}},
+using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
+generation function (MGF), and a 48-byte salt length (sLen).
+
 
 ## Issuer Configuration {#public-issuer-configuration}
 
 Issuers are configured with Private and Public Key pairs, each denoted skI and
 pkI, respectively, used to produce tokens. Each key pair SHALL be generated as
 as specified in FIPS 186-4 {{?DSS=DOI.10.6028/NIST.FIPS.186-4}}, where n is 4096 bits in length. These key
-pairs MUST NOT be reused in other protocols.
+pairs MUST NOT be reused in other protocols. Each key pair MUST comply with all requirements as specified in {{Section 5.2 of !PBLINDRSA}}.
 
 The key identifier for a keypair (skI, pkI), denoted `token_key_id`, is
 computed as SHA256(encoded_key), where encoded_key is a DER-encoded
