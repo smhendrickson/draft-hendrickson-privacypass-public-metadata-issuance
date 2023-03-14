@@ -49,7 +49,7 @@ TODO Introduction
 
 The following terms are used throughout this document.
 
-- Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. After signing metadata is bound to Tokens issued by the Issuer and therefore cannot be changed. In literature this may also be referred to as 'partial blinding'. We will refer to it as public metadata throughout this draft.
+- Public Metadata: Information that can be viewed by the Client, Attester, Issuer, and Origin, and cryptographically bound to a token.
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
 
