@@ -41,7 +41,23 @@ This document specifies a Privacy Pass token type that encodes public metadata v
 
 # Introduction
 
-TODO Introduction
+This document specifies a Privacy Pass token type that encodes public metadata visible to the Client, Attester, Issuer, and Origin. This allows deployments to encode a small amount of information visible to
+all parties participating in the protocol.
+
+This extends the token type registry defined in {{Section 8.2.1 of !PROTOCOL}} with a new token type of value `0xDA7A`:
+
+* Value: 0xDA7A
+* Name: Partially Blind RSA (4096-bit)
+* Token Structure: As defined in {{public-request}}
+* TokenChallenge Structure: As defined in {{Section 2.1 of AUTHSCHEME}}
+* Publicly Verifiable: Y
+* Public Metadata: Y
+* Private Metadata: N
+* Nk: 256
+* Nid: 32
+* Notes: The RSABSSA-SHA384-PSS-Deterministic and
+  RSABSSA-SHA384-PSSZERO-Deterministic variants are supported
+
 
 # Terminology
 
@@ -221,17 +237,15 @@ signature over the remainder of the token input using the Augmented Issuer Publi
 ~~~
 pkM = AugmentPublicKey(pkI, Token.metadata)
 token_authenticator_input =
-  concat(Token.token_type,
+         concat("msg",
+         int_to_bytes(len(metadata), 4),
+         Token.metadata,
+         Token.token_type,
          Token.nonce,
          Token.challenge_digest,
          Token.token_key_id)
-msg_prime =
-  concat("msg",
-         int_to_bytes(len(metadata), 4),
-         Token.metadata,
-         token_authenticator_input)
 valid = RSASSA-PSS-VERIFY(pkM,
-                          msg_prime,
+                          token_authenticator_input,
                           Token.authenticator)
 ~~~
 
