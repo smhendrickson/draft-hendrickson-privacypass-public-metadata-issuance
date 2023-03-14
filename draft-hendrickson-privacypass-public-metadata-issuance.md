@@ -155,7 +155,7 @@ Upon receipt of the request, the Issuer validates the following conditions:
 
 If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
 to the Client, which will forward the error to the client. Otherwise, if the
-Issuer is willing to produce a token token to the Client, the Issuer
+Issuer is willing to produce a token token to the Client for the provided metadata value, the Issuer
 completes the issuance flow by computing a blinded response as follows:
 
 ~~~
