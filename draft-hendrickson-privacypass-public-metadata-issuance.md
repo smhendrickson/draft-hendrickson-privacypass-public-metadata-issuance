@@ -112,7 +112,7 @@ struct {
   uint8_t truncated_token_key_id;
   opaque metadata<1..2^16-1>;
   uint8_t blinded_msg[Nk];
-} TokenRequest;
+} MetadataTokenRequest;
 ~~~
 
 The structure fields are defined as follows:
