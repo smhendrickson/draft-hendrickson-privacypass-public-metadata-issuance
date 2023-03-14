@@ -152,7 +152,6 @@ Upon receipt of the request, the Issuer validates the following conditions:
 - The TokenRequest.truncated_token_key_id corresponds to the truncated key
   ID of an Issuer Public Key.
 - The TokenRequest.blinded_msg is of the correct size.
-- The TokenREquest.metadata satisfies issuer requirements.
 
 If any of these conditions is not met, the Issuer MUST return an HTTP 400 error
 to the Client, which will forward the error to the client. Otherwise, if the
