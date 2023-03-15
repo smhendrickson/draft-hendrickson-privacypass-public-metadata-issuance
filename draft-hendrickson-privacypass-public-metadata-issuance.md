@@ -57,10 +57,9 @@ The following terms are used throughout this document.
 
 The following terms are used throughout this document to describe the protocol operations in this document:
 
- - len(s): the length of a byte string, in bytes
+ - len(s): the length of a byte string, in bytes, represented as a uint16_t
  - concat(x0, ..., xN): Concatenation of byte strings. For example, concat(0x01, 0x0203, 0x040506) = 0x010203040506
  - int_to_bytes: Convert a non-negative integer to a byte string. int_to_bytes is implemented as I2OSP as described in {{Section 4.1 of RFC8017}}. Note that these functions operate on byte strings in big-endian byte order.
-
 
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
