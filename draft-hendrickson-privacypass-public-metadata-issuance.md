@@ -58,6 +58,9 @@ The following terms are used throughout this document.
 The following terms are used throughout this document to describe the protocol operations in this document:
 
  - len(s): the length of a byte string, in bytes
+ - concat(x0, ..., xN): Concatenation of byte strings. For example, concat(0x01, 0x0203, 0x040506) = 0x010203040506
+ - int_to_bytes: Convert a non-negative integer to a byte string. int_to_bytes is implemented as I2OSP as described in {{Section 4.1 of RFC8017}}. Note that these functions operate on byte strings in big-endian byte order.
+
 
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
@@ -248,8 +251,6 @@ and message verification is redefined in {{Section 4.5 of !PBLINDRSA}}.
 The function `RSASSA-PSS-VERIFY` is defined in {{Section 8.1.2 of !RFC8017}},
 using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
 generation function (MGF), and a 48-byte salt length (sLen).
-
-
 
 
 ## Issuer Configuration {#public-issuer-configuration}
