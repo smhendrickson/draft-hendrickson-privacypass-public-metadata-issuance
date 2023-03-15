@@ -212,7 +212,7 @@ follows:
 
 ~~~
 struct {
-  uint16_t token_type = 0xDA7A; /* Type Partially Blind RSA (4096-bit) */
+  uint16_t token_type = 0xDA7A; /* Type Partially Blind RSA (2048-bit) */
   opaque metadata<1..2^16-1>;
   uint8_t nonce[32];
   uint8_t challenge_digest[32];
@@ -258,7 +258,7 @@ generation function (MGF), and a 48-byte salt length (sLen).
 
 Issuers are configured with Private and Public Key pairs, each denoted skI and
 pkI, respectively, used to produce tokens. Each key pair SHALL be generated as
-as specified in FIPS 186-4 {{?DSS=DOI.10.6028/NIST.FIPS.186-4}}, where n is 4096 bits in length. These key
+as specified in FIPS 186-4 {{?DSS=DOI.10.6028/NIST.FIPS.186-4}}, where n is 2048 bits in length. These key
 pairs MUST NOT be reused in other protocols. Each key pair MUST comply with all requirements as specified in {{Section 5.2 of !PBLINDRSA}}.
 
 The key identifier for a keypair (skI, pkI), denoted `token_key_id`, is
@@ -283,7 +283,7 @@ TODO Security
 This extends the token type registry defined in {{Section 8.2.1 of !PROTOCOL}} with a new token type of value `0xDA7A`:
 
 * Value: 0xDA7A
-* Name: Partially Blind RSA (4096-bit)
+* Name: Partially Blind RSA (2048-bit)
 * Token Structure: As defined in {{public-request}}
 * TokenChallenge Structure: As defined in {{Section 2.1 of AUTHSCHEME}}
 * Publicly Verifiable: Y
