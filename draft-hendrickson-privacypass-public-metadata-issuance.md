@@ -238,8 +238,8 @@ token_input = concat(0xDA7A, // Token type field is 2 bytes long
                      Token.challenge_digest,
                      Token.token_key_id)
 token_authenticator_input =  concat("msg",
-    int_to_bytes(len(Token.metadata), 2), 
-    Token.metadata, 
+    int_to_bytes(len(Token.metadata), 2),
+    Token.metadata,
     token_input)
 valid = RSASSA-PSS-VERIFY(pkM,
                           token_authenticator_input,
