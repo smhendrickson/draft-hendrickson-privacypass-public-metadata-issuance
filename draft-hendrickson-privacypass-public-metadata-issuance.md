@@ -233,7 +233,7 @@ signature over the remainder of the token input using the Augmented Issuer Publi
 pkM = AugmentPublicKey(pkI, Token.metadata)
 token_authenticator_input =
          concat("msg",
-         int_to_bytes(len(metadata), 4),
+         int_to_bytes(len(metadata), 2),
          Token.metadata,
          Token.token_type,
          Token.nonce,
