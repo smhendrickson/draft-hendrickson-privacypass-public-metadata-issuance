@@ -46,7 +46,7 @@ all parties participating in the protocol.
 
 # Motivation
 
-Public metadata enables Privacy Pass deployments that share information between clients, attesters, issuers and origins. In a 0x01 (VOPRF) or 0x02 (Blind RSA) deployment, the only information available to all parties is the `issuer_name`. If one wants to differentiate bits of information at the origin, many TokenChallenges must be sent - one for each `issuer_name` that attests to the bit required. 
+Public metadata enables Privacy Pass deployments that share information between clients, attesters, issuers and origins. In a 0x01 (VOPRF) or 0x02 (Blind RSA) deployment, the only information available to all parties is the `issuer_name`. If one wants to differentiate bits of information at the origin, many TokenChallenges must be sent - one for each `issuer_name` that attests to the bit required.
 
 For example, if a deployment was built that attested to an app’s published state in an app store, it requires 1 bit {`published`, `not_published`} and can be built with a single issuer. To build an app version attester, we need one `issuer_name` for each app version, and one challenge per version the origin needs to differentiate on each origin load. For each new app version that requires attesting, a new `issuer_name` must be deployed. If we build this system with public metadata a single TokenChallenge for a single `issuer_name` can be used. Deployment specific logic could allow adding a new app version into the metadata once sufficient users are on the new version, ensuring users are private when providing attested metadata bits to the origins.
 
