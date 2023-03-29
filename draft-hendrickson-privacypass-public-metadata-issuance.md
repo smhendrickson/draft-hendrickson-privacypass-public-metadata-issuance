@@ -44,6 +44,16 @@ This document specifies a Privacy Pass token type that encodes public metadata v
 This document specifies a Privacy Pass token type that encodes public metadata visible to the Client, Attester, Issuer, and Origin. This allows deployments to encode a small amount of information visible to
 all parties participating in the protocol.
 
+# Motivation
+
+Public metadata enables Privacy Pass deployments that share information between clients, attesters, issuers and origins. In a 0x01 (VOPRF) or 0x02 (Blind RSA) deployment, the only information available to all parties is the `issuer_name`. If one wants to differentiate bits of information at the origin, many TokenChallenges must be sent - one for each `issuer_name` that attests to the bit required.
+
+For example, if a deployment was built that attested to an app’s published state in an app store, it requires 1 bit {`published`, `not_published`} and can be built with a single issuer. To build an app version attester, we need one `issuer_name` for each app version, and one challenge per version the origin needs to differentiate on each origin load. For each new app version that requires attesting, a new `issuer_name` must be deployed. If we build this system with public metadata a single TokenChallenge for a single `issuer_name` can be used. Deployment specific logic could allow adding a new app version into the metadata once sufficient users are on the new version, ensuring users are private when providing attested metadata bits to the origins.
+
+## Alternatives
+
+To implement this scheme without new cryptographic primitives, one could deploy an issuer signing key per metadata value, and publish each key’s bit assignment in Issuer Configuration. This many-key metadata deployment should provide metadata visible to all parties in the same way as the {{!PBLINDRSA}} proposal outlined here, however it has reliability and scalability tradeoffs. Imagine a Privacy Pass deployment using a client cached redemption context where max-age cannot be used to expire signed tokens due to the cache, yet the deployment requires fast token expiration. Handling this requires either deploying one key per expiration period or rotating keys quickly. Many simultaneous deployed keys could be difficult to scale - for example some HSM implementations have fixed per-key costs, slow key generation, and minimum key lifetimes. Quick key rotation creates reliability risk to the system, as a pause or slowdown in key rotation could cause the system to run out of active signing or verification keys. {{!PBLINDRSA}} allows deployments to change metadata sets without publishing new keys, and challenge expiry can be encoded within metadata. It pushes all metadata design into the deployment domain, instead of defining them in issuer configuration.
+
 
 # Terminology
 
