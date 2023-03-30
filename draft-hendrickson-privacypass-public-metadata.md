@@ -3,7 +3,7 @@ title: "Public Metadata Issuance"
 abbrev: "Public Metadata Issuance"
 category: info
 
-docname: draft-hendrickson-pp-public-metadata-latest
+docname: draft-hendrickson-privacypass-public-metadata-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
@@ -19,7 +19,7 @@ venue:
   mail: "privacy-pass@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/privacy-pass/"
   github: "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance"
-  latest: "https://smhendrickson.github.io/draft-hendrickson-privacypass-public-metadata-issuance/draft-hendrickson-pp-public-metadata.html"
+  latest: "https://smhendrickson.github.io/draft-hendrickson-privacypass-public-metadata-issuance/draft-hendrickson-privacypass-public-metadata.html"
 
 author:
  -
