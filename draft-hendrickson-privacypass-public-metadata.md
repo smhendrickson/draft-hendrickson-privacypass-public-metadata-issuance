@@ -111,8 +111,6 @@ The Client first creates an issuance request message for a random value
 nonce = random(32)
 challenge_digest = SHA256(challenge)
 token_input = concat(0xDA7A, // Token type field is 2 bytes long
-                     int_to_bytes(len(metadata), 2),
-                     metadata,
                      nonce,
                      challenge_digest,
                      token_key_id)
@@ -242,13 +240,11 @@ signature over the remainder of the token input using the Augmented Issuer Publi
 ~~~
 pkM = AugmentPublicKey(pkI, Token.metadata)
 token_input = concat(0xDA7A, // Token type field is 2 bytes long
-                     int_to_bytes(len(Token.metadata), 2),
-                     Token.metadata,
                      Token.nonce,
                      Token.challenge_digest,
                      Token.token_key_id)
 token_authenticator_input =  concat("msg",
-    int_to_bytes(len(Token.metadata), 2),
+    int_to_bytes(len(Token.metadata), 4),
     Token.metadata,
     token_input)
 valid = RSASSA-PSS-VERIFY(pkM,
