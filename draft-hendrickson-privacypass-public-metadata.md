@@ -107,7 +107,7 @@ Clients provide the following as input to the issuance protocol:
   directory resource, or it can be another Client-configured URL. The value
   of this parameter depends on the Client configuration and deployment model.
   For example, in the 'Split Origin, Attester, Issuer' deployment model, the
-  Issuer Request URI might be correspond to the Client's configured Attester,
+  Issuer Request URI might correspond to the Client's configured Attester,
   and the Attester is configured to relay requests to the Issuer.
 - Issuer name: An identifier for the Issuer. This is typically a host name that
   can be used to construct HTTP requests to the Issuer.
