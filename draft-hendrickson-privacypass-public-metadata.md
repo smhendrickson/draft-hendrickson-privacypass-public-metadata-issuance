@@ -94,7 +94,7 @@ without publishing new keys.
 
 # Issuance Protocol for Privately Verifiable Tokens {#private-flow}
 
-This section describes a variant of the issuance protocol in {{Section 5 of !PROTOCOL}}
+This section describes a variant of the issuance protocol in {{Section 5 of !BASIC-PROTOCOL}}
 that supports public metadata based on the partially oblivious PRF (POPRF) from
 {{!POPRF=I-D.irtf-cfrg-voprf}}. Issuers provide a Private and Public Key, denoted
 `skI` and `pkI` respectively, used to produce tokens as input to the protocol.
@@ -274,7 +274,7 @@ If the Finalize function fails, the Client aborts the protocol.
 The Client will send this Token to Origins for redemption in the "token" HTTP
 authentication parameter as specified in {{Section 2.2 of AUTHSCHEME}}.
 The Client also supplies its extensions value as an additional authentication
-parameter as specified in {{TBD}}.
+parameter as specified in {{TOKEN-EXTENSION}}.
 
 ## Token Verification
 
@@ -306,7 +306,7 @@ seed = random(Ns)
 (skI, pkI) = DeriveKeyPair(seed, "PrivacyPass-TypeDA7B")
 ~~~
 
-The DeriveKeyPair function is defined in {{OPRF, Section 3.3.1}}.
+The DeriveKeyPair function is defined in {{POPRF, Section 3.3.1}}.
 The key identifier for a public key `pkI`, denoted `token_key_id`, is computed
 as follows:
 
@@ -320,14 +320,14 @@ truncated key IDs in rotation.
 
 # Issuance Protocol for Publicly Verifiable Tokens {#public-flow}
 
-This section describes a variant of the issuance protocol in {{Section 6 of !PROTOCOL}}
+This section describes a variant of the issuance protocol in {{Section 6 of !BASIC-PROTOCOL}}
 for producing publicly verifiable tokens including public metadata using cryptography specified in {{PBRSA}}.
 In particular, this variant of the issuance protocol works for the
 `RSAPBSSA-SHA384-PSSZERO-Deterministic` or `RSAPBSSA-SHA384-PSS-Deterministic`
 variant of the blind RSA protocol variants described in {{Section 6 of !PBRSA}}.
 
 The public metadata issuance protocol differs from the protocol in
-{{Section 6 of !PROTOCOL}} in that the issuance and redemption protocols carry metadata
+{{Section 6 of !BASIC-PROTOCOL}} in that the issuance and redemption protocols carry metadata
 provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients
 can set arbitrary metadata when requesting a token, but specific values of metadata may be
 rejected by any of Attester, Issuer, or Origin. Similar to a token nonce, metadata is
@@ -462,13 +462,13 @@ struct {
 } Token;
 ~~~
 
-The Token.nonce value is that which was sampled in {{Section 5.1 of PROTOCOL}}.
+The Token.nonce value is that which was sampled in {{Section 5.1 of !BASIC-PROTOCOL}}.
 If the Finalize function fails, the Client aborts the protocol.
 
 The Client will send this Token to Origins for redemption in the "token" HTTP
 authentication parameter as specified in {{Section 2.2 of AUTHSCHEME}}.
 The Client also supplies its extensions value as an additional authentication
-parameter as specified in {{TBD}}.
+parameter as specified in {{TOKEN-EXTENSION}}.
 
 ## Token Verification
 
@@ -525,7 +525,7 @@ TODO Security
 
 # IANA Considerations {#iana}
 
-This document extends the token type registry defined in {{Section 8.2.1 of !PROTOCOL}} with two new
+This document extends the token type registry defined in {{Section 8.2.1 of !BASIC-PROTOCOL}} with two new
 entries described in the following sub-sections.
 
 ## Privately Verifiable Token Type
