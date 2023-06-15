@@ -30,8 +30,11 @@ author:
 normative:
   AUTHSCHEME: I-D.draft-ietf-privacypass-auth-scheme
   BASIC-PROTOCOL: I-D.draft-ietf-privacypass-protocol
-  POPRF: I-D.draft-cfrg-voprf
-  PBRSA: I-D.draft-amjad-cfrg-partially-blind-rsa
+  POPRF: I-D.irtf-cfrg-voprf
+  PBRSA: I-D.amjad-cfrg-partially-blind-rsa
+  TOKEN-EXTENSION:
+    target: https://chris-wood.github.io/draft-wood-privacypass-extensible-token/draft-wood-privacypass-extensible-token.html
+    title: "The PrivateToken HTTP Authentication Scheme Extensions Parameter"
 
 
 --- abstract
@@ -96,7 +99,7 @@ without publishing new keys.
 
 This section describes a variant of the issuance protocol in {{Section 5 of !BASIC-PROTOCOL}}
 that supports public metadata based on the partially oblivious PRF (POPRF) from
-{{!POPRF=I-D.irtf-cfrg-voprf}}. Issuers provide a Private and Public Key, denoted
+{{POPRF}}. Issuers provide a Private and Public Key, denoted
 `skI` and `pkI` respectively, used to produce tokens as input to the protocol.
 See {{private-issuer-configuration}} for how this key pair is generated.
 
@@ -115,7 +118,7 @@ Clients provide the following as input to the issuance protocol:
   described in {{public-issuer-configuration}}.
 - Challenge value: `challenge`, an opaque byte string. For example, this might
   be provided by the redemption protocol in {{AUTHSCHEME}}.
-- Extensions: `extensions`, an Extensions structure as defined in {{!TOKEN-EXTENSION=TBD}}.
+- Extensions: `extensions`, an Extensions structure as defined in {{TOKEN-EXTENSION}}.
 
 Given this configuration and these inputs, the two messages exchanged in
 this protocol are described below. This section uses notation described in
@@ -348,7 +351,7 @@ Clients provide the following as input to the issuance protocol:
   described in {{public-issuer-configuration}}.
 - Challenge value: `challenge`, an opaque byte string. For example, this might
   be provided by the redemption protocol in {{AUTHSCHEME}}.
-- Extensions: `extensions`, an Extensions structure as defined in {{!TOKEN-EXTENSION=TBD}}.
+- Extensions: `extensions`, an Extensions structure as defined in {{TOKEN-EXTENSION}}.
 
 Given this configuration and these inputs, the two messages exchanged in
 this protocol are described below. The constant `Nk` is defined as 256 for token type 0xDA7A.
