@@ -26,6 +26,10 @@ author:
     fullname: Scott Hendrickson
     organization: Google
     email: "scott@shendrickson.com"
+ -
+    fullname: Christopher A. Wood
+    organization: Cloudflare, Inc.
+    email: caw@heapingbits.net
 
 normative:
   AUTHSCHEME: I-D.draft-ietf-privacypass-auth-scheme
