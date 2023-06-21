@@ -73,7 +73,7 @@ The following terms are used throughout this document to describe the protocol o
  - len(s): the length of a byte string, in bytes.
  - concat(x0, ..., xN): Concatenation of byte strings. For example, concat(0x01, 0x0203, 0x040506) = 0x010203040506
  - int_to_bytes: Convert a non-negative integer to a byte string. int_to_bytes is
-   implemented as I2OSP as described in {{Section 4.1 of RFC8017}}. Note that these
+   implemented as I2OSP as described in {{Section 4.1 of !RFC8017}}. Note that these
    functions operate on byte strings in big-endian byte order.
 
 # Motivation
@@ -482,28 +482,18 @@ parameter as specified in {{TOKEN-EXTENSION}}.
 Verifying a Token requires checking that Token.authenticator is a valid
 signature over the remainder of the token input with respect to the corresponding
 Extensions value `extensions` using the Augmented Issuer Public Key.
+This involves invoking the verification procedure described in
+{{Section 4.5 of !PBRSA}} using the following `token_input` value as
+the input message, `extensions` as the input info (metadata), the Issuer
+Public Key as the input public key, and the token authenticator (Token.authenticator)
+as the signature.
 
 ~~~
-pkM = AugmentPublicKey(pkI, extensions)
 token_input = concat(0xDA7A, // Token type field is 2 bytes long
                      Token.nonce,
                      Token.challenge_digest,
                      Token.token_key_id)
-token_authenticator_input =  concat("msg",
-    int_to_bytes(len(extensions), 2),
-    extensions,
-    token_input)
-valid = RSASSA-PSS-VERIFY(pkM,
-                          token_authenticator_input,
-                          Token.authenticator)
 ~~~
-
-Where `AugmentPublicKey` is defined in {{Section 4.6 of !PBRSA}},
-and message verification is redefined in {{Section 4.5 of !PBRSA}}.
-
-The function `RSASSA-PSS-VERIFY` is defined in {{Section 8.1.2 of !RFC8017}},
-using SHA-384 as the Hash function, MGF1 with SHA-384 as the PSS mask
-generation function (MGF), and a 48-byte salt length (sLen).
 
 ## Issuer Configuration {#public-issuer-configuration}
 
