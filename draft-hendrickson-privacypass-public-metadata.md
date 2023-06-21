@@ -484,8 +484,9 @@ signature over the remainder of the token input with respect to the correspondin
 Extensions value `extensions` using the Augmented Issuer Public Key.
 This involves invoking the verification procedure described in
 {{Section 4.5 of !PBRSA}} using the following `token_input` value as
-the input message, `extensions` as the input info (metadata), and the Issuer
-Public Key as the input public key.
+the input message, `extensions` as the input info (metadata), the Issuer
+Public Key as the input public key, and the token authenticator (Token.authenticator)
+as the signature.
 
 ~~~
 token_input = concat(0xDA7A, // Token type field is 2 bytes long
