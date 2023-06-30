@@ -1,0 +1,807 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-04-04T01:37:23.134248+00:00",
+  "repo": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOI5fDsM5g6j1g",
+      "title": "Add motivation section",
+      "url": "https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/issues/2",
+      "state": "CLOSED",
+      "author": "smhendrickson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-15T17:30:05Z",
+      "updatedAt": "2023-04-03T20:42:18Z",
+      "closedAt": "2023-04-03T20:42:17Z",
+      "comments": [
+        {
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/pull/3",
+          "createdAt": "2023-04-03T20:42:17Z",
+          "updatedAt": "2023-04-03T20:42:17Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOI5fDsM5JeXjs",
+      "title": "Add tokentype",
+      "url": "https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/pull/1",
+      "state": "MERGED",
+      "author": "smhendrickson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "From the the protocol doc, section 6 [1]\r\n\r\n[1]: https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-08#name-issuance-protocol-for-publi",
+      "createdAt": "2023-02-07T22:59:37Z",
+      "updatedAt": "2023-03-15T17:28:35Z",
+      "baseRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "baseRefName": "main",
+      "baseRefOid": "5cd9b00b9313e8c17a3fe0cdc58c76b7bef37bda",
+      "headRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "headRefName": "tokentype",
+      "headRefOid": "f3b1e72f8794d0e92172a148a016b557bbb555ff",
+      "closedAt": "2023-03-15T17:28:35Z",
+      "mergedAt": "2023-03-15T17:28:35Z",
+      "mergedBy": "smhendrickson",
+      "mergeCommit": {
+        "oid": "4668c6907dbf62c01d7db952e6607afa55f32d2b"
+      },
+      "comments": [
+        {
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "body": "@chris-wood see new rev for len definition. Using len for consistency with PBLINDRSA",
+          "createdAt": "2023-03-15T00:03:26Z",
+          "updatedAt": "2023-03-15T00:03:26Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOI5fDsM5M3_SD",
+          "commit": {
+            "abbreviatedOid": "d997bb4"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-08T18:18:03Z",
+          "updatedAt": "2023-02-08T18:52:52Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n  PROTOCOL: I-D.draft-ietf-privacypass-protocol\r\n```",
+              "createdAt": "2023-02-08T18:18:03Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\n  BLINDRSA: I-D.draft-irtf-cfrg-rsa-blind-signatures\r\n```",
+              "createdAt": "2023-02-08T18:18:10Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\n- Public Metadata: Arbitrary length metadata that can be viewed by the Client, Attester, Issuer, and Origin. Public metadata is bound Tokens issued by the issuer and therefore cannot be changed.\r\n```",
+              "createdAt": "2023-02-08T18:20:09Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\n{{Section 6 of PROTOCOL}} in that the issuance and redemption protocols carry metadata provided by the Client and visible to the Attester, Issuer, and Origin. This means Clients can set arbitrary metadata when requesting a token, but specific values of metadata may be rejected by either Attester, Issuer, or Origin. Similar to a token nonce, metadata is cryptographically bound to a token and cannot be altered.\r\n```",
+              "createdAt": "2023-02-08T18:22:45Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 40,
+              "body": "I think we may want to include key generation details in this document, in particular because the PBRSA variant requires a very specific type of key.",
+              "createdAt": "2023-02-08T18:23:22Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 57,
+              "body": "```suggestion\r\n- Metadata value: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.\r\n```",
+              "createdAt": "2023-02-08T18:35:03Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "```suggestion\r\nthis protocol are described below. The constant `Nk` is defined as 256 for token type 0x1234 in\r\n```",
+              "createdAt": "2023-02-08T18:35:18Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "... assuming we go with 2048-bit keys",
+              "createdAt": "2023-02-08T18:35:42Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 71,
+              "body": "```suggestion\r\ntoken_input = concat(0x1234, // Token type field is 2 bytes long\r\n                     len_in_bytes(metadata), // 2-byte length of metadata\r\n                     metadata,\r\n```",
+              "createdAt": "2023-02-08T18:37:31Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 71,
+              "body": "This is so that the signature covers everything preceding the authenticator in Token. That said, it's redundant... since `Blind` will concatenate the input to the metadata, and could therefore be more expensive than desired.",
+              "createdAt": "2023-02-08T18:40:30Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 79,
+              "body": "The current draft requires PrepareRandomize, not PrepareIdentity, so this may need some work.",
+              "createdAt": "2023-02-08T18:40:56Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 76,
+              "body": "Blind also returns the randomized prefix that's appended to the message.",
+              "createdAt": "2023-02-08T18:41:38Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 104,
+              "body": "What does \"that all blinded_msg values are encoded for\" mean?",
+              "createdAt": "2023-02-08T18:42:39Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 133,
+              "body": "I would drop \"satisfies issuer requirements\" since it's not clear what that means. I would instead lean on text elsewhere that says something like \"metadata values are defined by the deployment and have privacy considerations; see <architecture doc> for more details.\"",
+              "createdAt": "2023-02-08T18:45:13Z",
+              "updatedAt": "2023-02-08T18:52:52Z"
+            },
+            {
+              "originalPosition": 110,
+              "body": "Since this is a new TokenRequest structure, we need a new media type.",
+              "createdAt": "2023-02-08T18:45:42Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 156,
+              "body": "We'd also need a new media type for this, too.",
+              "createdAt": "2023-02-08T18:45:52Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 177,
+              "body": "This new Token type will need a new media type, too. I wonder if we should name these something else so there's no confusion between these types and the existing ones.",
+              "createdAt": "2023-02-08T18:48:00Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 196,
+              "body": "\ud83d\udc4d Yeah, this looks like it still needs to be updated.",
+              "createdAt": "2023-02-08T18:48:17Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            },
+            {
+              "originalPosition": 218,
+              "body": "I assume this key generation advice has to be updated still?",
+              "createdAt": "2023-02-08T18:48:47Z",
+              "updatedAt": "2023-02-08T18:52:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5M9jUm",
+          "commit": {
+            "abbreviatedOid": "d997bb4"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-09T14:05:47Z",
+          "updatedAt": "2023-02-09T14:05:48Z",
+          "comments": [
+            {
+              "originalPosition": 235,
+              "body": "Will review more after our summit, but do we need to add a new token type definition, to modify the table from the protocol document?",
+              "createdAt": "2023-02-09T14:05:47Z",
+              "updatedAt": "2023-02-09T14:05:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NFtU7",
+          "commit": {
+            "abbreviatedOid": "d997bb4"
+          },
+          "author": "dvorak42",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T15:05:11Z",
+          "updatedAt": "2023-02-10T15:16:02Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "More generally wondering if we should avoid stacking references to other token types, and just redeclare type specific algorithm/structures in this document as well?",
+              "createdAt": "2023-02-10T15:05:11Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 57,
+              "body": "nit shouldn't it be: 2<sup>16</sup>-1?",
+              "createdAt": "2023-02-10T15:07:16Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "Can we drop the \"in {{PROTOCOL}}\" part?",
+              "createdAt": "2023-02-10T15:08:38Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 110,
+              "body": "More of a comment for the parent spec, but it seems a little odd we have a different identifier for the structure both in the media type and inside the TokenRequest (token_type) field? Was there a reason the media type is per token type?",
+              "createdAt": "2023-02-10T15:10:59Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 133,
+              "body": "We still should have some text saying that the issuer/attester can drop the token request if it has invalid values (where invalid values are defined by the deployment). Otherwise its not clear what parties have an option of denying a TokenRequest.",
+              "createdAt": "2023-02-10T15:12:33Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 182,
+              "body": "nit: Inconsistent with the comment on the TokenRequest token_type field.",
+              "createdAt": "2023-02-10T15:13:25Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            },
+            {
+              "originalPosition": 183,
+              "body": "Are we signing the authenticator over this value?",
+              "createdAt": "2023-02-10T15:15:52Z",
+              "updatedAt": "2023-02-10T15:16:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHYdT",
+          "commit": {
+            "abbreviatedOid": "119e08b"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:31:12Z",
+          "updatedAt": "2023-02-10T18:31:13Z",
+          "comments": [
+            {
+              "originalPosition": 40,
+              "body": "Replaced with a TODO that will review token generation, once that draft is ready.",
+              "createdAt": "2023-02-10T18:31:12Z",
+              "updatedAt": "2023-02-10T18:31:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHZUH",
+          "commit": {
+            "abbreviatedOid": "119e08b"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:34:17Z",
+          "updatedAt": "2023-02-10T18:34:18Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "I want to communicate that there aren't multiple metadata accepted for a batch of blinded_msg Tokens - the metadata is fixed for the batch of tokens. Thoughts on wording for this? ",
+              "createdAt": "2023-02-10T18:34:17Z",
+              "updatedAt": "2023-02-10T18:34:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHdNt",
+          "commit": {
+            "abbreviatedOid": "086a380"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:46:11Z",
+          "updatedAt": "2023-02-10T18:46:11Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "There is no concept of a \"batch\" in the issuance protocol. If you want to turn this into a batch oriented protocol, more changes would be needed.",
+              "createdAt": "2023-02-10T18:46:11Z",
+              "updatedAt": "2023-02-10T18:46:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5NHhmb",
+          "commit": {
+            "abbreviatedOid": "086a380"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-02-10T18:56:46Z",
+          "updatedAt": "2023-02-10T18:56:47Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "Agh you're right, I am mixing protocols. Updated to be singular.",
+              "createdAt": "2023-02-10T18:56:46Z",
+              "updatedAt": "2023-02-10T18:56:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P4-A7",
+          "commit": {
+            "abbreviatedOid": "71c54e9"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-14T21:55:39Z",
+          "updatedAt": "2023-03-14T22:10:18Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\n- Public Metadata: Information that can be viewed by the Client, Attester, Issuer, and Origin, and cryptographically bound to a token.\r\n```",
+              "createdAt": "2023-03-14T21:55:39Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\n- Public Metadata: `metadata`, an opaque byte string of length at most 2<sup>16-1</sup> bytes.\r\n```",
+              "createdAt": "2023-03-14T21:56:35Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "We should probably define this function earlier in the document.",
+              "createdAt": "2023-03-14T21:57:45Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 103,
+              "body": "```suggestion\r\n- \"metadata\" is the opaque metadata value input to the issuance protocol.\r\n```",
+              "createdAt": "2023-03-14T22:01:53Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 132,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2023-03-14T22:02:33Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 133,
+              "body": "@smhendrickson can we do something with this text?",
+              "createdAt": "2023-03-14T22:02:59Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 136,
+              "body": "```suggestion\r\nIssuer is willing to produce a token token to the Client for the provided metadata value, the Issuer\r\n```",
+              "createdAt": "2023-03-14T22:03:35Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "```suggestion\r\n} MetadataTokenRequest;\r\n```",
+              "createdAt": "2023-03-14T22:04:11Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "(here and elsewhere)",
+              "createdAt": "2023-03-14T22:04:20Z",
+              "updatedAt": "2023-03-14T22:10:19Z"
+            },
+            {
+              "originalPosition": 151,
+              "body": "```suggestion\r\n} MetadataTokenResponse;\r\n```",
+              "createdAt": "2023-03-14T22:04:30Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 151,
+              "body": "(here and elsewhere)",
+              "createdAt": "2023-03-14T22:04:40Z",
+              "updatedAt": "2023-03-14T22:10:19Z"
+            },
+            {
+              "originalPosition": 183,
+              "body": "Currently, that's how it works, but now that I'm looking at this again I wonder if it wouldn't just be easier to keep metadata out of the Token (and TokenRequest) structure. Need to think more about it.",
+              "createdAt": "2023-03-14T22:06:49Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 230,
+              "body": "```suggestion\r\nas specified in FIPS 186-4 {{?DSS=DOI.10.6028/NIST.FIPS.186-4}}, where n is 2048 bits in length. These key\r\n```\r\n\r\nWe do not need 4096 bits.",
+              "createdAt": "2023-03-14T22:07:50Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            },
+            {
+              "originalPosition": 202,
+              "body": "The metadata length and metadata value is missing here.",
+              "createdAt": "2023-03-14T22:10:05Z",
+              "updatedAt": "2023-03-14T22:10:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P5Hwq",
+          "commit": {
+            "abbreviatedOid": "8fe5cbb"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-14T22:31:42Z",
+          "updatedAt": "2023-03-14T22:31:43Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "Added a section in Introduction",
+              "createdAt": "2023-03-14T22:31:42Z",
+              "updatedAt": "2023-03-14T22:31:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P5PQn",
+          "commit": {
+            "abbreviatedOid": "8fe5cbb"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-14T22:56:28Z",
+          "updatedAt": "2023-03-14T23:29:30Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "Let's move this to the IANA considerations section. It doesn't really make sense to put it in the intro.",
+              "createdAt": "2023-03-14T22:56:28Z",
+              "updatedAt": "2023-03-14T23:29:30Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "Did you commit that change? I don't see len_in_bytes defined anywhere.",
+              "createdAt": "2023-03-14T22:57:00Z",
+              "updatedAt": "2023-03-14T23:29:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P5afx",
+          "commit": {
+            "abbreviatedOid": "8fe5cbb"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T00:03:37Z",
+          "updatedAt": "2023-03-15T00:03:37Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "sgtm",
+              "createdAt": "2023-03-15T00:03:37Z",
+              "updatedAt": "2023-03-15T00:03:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P7lY6",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T09:44:04Z",
+          "updatedAt": "2023-03-15T09:44:05Z",
+          "comments": [
+            {
+              "originalPosition": 216,
+              "body": "```suggestion\r\n         int_to_bytes(len(metadata), 2),\r\n```",
+              "createdAt": "2023-03-15T09:44:04Z",
+              "updatedAt": "2023-03-15T09:44:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P7ldb",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T09:44:12Z",
+          "updatedAt": "2023-03-15T09:44:13Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\n - len(s): the length of a byte string, in bytes.\r\n```",
+              "createdAt": "2023-03-15T09:44:12Z",
+              "updatedAt": "2023-03-15T09:44:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P7lnc",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T09:44:34Z",
+          "updatedAt": "2023-03-15T09:44:35Z",
+          "comments": [
+            {
+              "originalPosition": 82,
+              "body": "```suggestion\r\n                     int_to_bytes(len(metadata), 2),\r\n```",
+              "createdAt": "2023-03-15T09:44:34Z",
+              "updatedAt": "2023-03-15T09:44:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P7lv3",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T09:44:53Z",
+          "updatedAt": "2023-03-15T09:44:53Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "@smhendrickson I suggested the length be two bytes because that's how it's encoded here.",
+              "createdAt": "2023-03-15T09:44:53Z",
+              "updatedAt": "2023-03-15T09:44:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P7mBO",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "My last suggestions fix a bug, but other than that I think it's in good shape for a -00.",
+          "createdAt": "2023-03-15T09:45:30Z",
+          "updatedAt": "2023-03-15T09:45:30Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P96xQ",
+          "commit": {
+            "abbreviatedOid": "b300214"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T14:27:46Z",
+          "updatedAt": "2023-03-15T14:27:46Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "Yup I noted this. I was initially thinking this was arbitrary length, so the len output should be as well. 2-byte len makes sense to me, and I accepted the 4->2 bug fix",
+              "createdAt": "2023-03-15T14:27:46Z",
+              "updatedAt": "2023-03-15T14:27:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P-AM7",
+          "commit": {
+            "abbreviatedOid": "5ad489d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T14:37:37Z",
+          "updatedAt": "2023-03-15T14:37:37Z",
+          "comments": [
+            {
+              "originalPosition": 269,
+              "body": "This suggests the key size is 2048 bits, not 4096. @smhendrickson can we make sure this is consistent throughtout?",
+              "createdAt": "2023-03-15T14:37:37Z",
+              "updatedAt": "2023-03-15T14:37:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P-BZv",
+          "commit": {
+            "abbreviatedOid": "5ad489d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T14:39:52Z",
+          "updatedAt": "2023-03-15T14:39:53Z",
+          "comments": [
+            {
+              "originalPosition": 221,
+              "body": "```suggestion\r\ntoken_input = concat(0xDA7A, // Token type field is 2 bytes long\r\n                     int_to_bytes(len(Token.metadata), 2),\r\n                     Token.metadata,\r\n                     Token.nonce,\r\n                     Token.challenge_digest,\r\n                     Token.token_key_id)\r\ntoken_authenticator_input =  concat(\"msg\",\r\n    int_to_bytes(len(Token.metadata), 2), \r\n    Token.metadata, \r\n    token_input)\r\n```",
+              "createdAt": "2023-03-15T14:39:52Z",
+              "updatedAt": "2023-03-15T14:39:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P_TD7",
+          "commit": {
+            "abbreviatedOid": "5ad489d"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM pending final suggestion. I'd suggest adding an OPEN ISSUE in the document somewhere to discuss how we thread metadata into the protocol. This may not be the best design. =)",
+          "createdAt": "2023-03-15T17:04:45Z",
+          "updatedAt": "2023-03-15T17:04:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOI5fDsM5P_d0e",
+          "commit": {
+            "abbreviatedOid": "5ad489d"
+          },
+          "author": "smhendrickson",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-15T17:28:03Z",
+          "updatedAt": "2023-03-15T17:28:03Z",
+          "comments": [
+            {
+              "originalPosition": 269,
+              "body": "Done in https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/pull/1/commits/f3b1e72f8794d0e92172a148a016b557bbb555ff",
+              "createdAt": "2023-03-15T17:28:03Z",
+              "updatedAt": "2023-03-15T17:28:03Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOI5fDsM5NDzEy",
+      "title": "Add motivation draft",
+      "url": "https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/pull/3",
+      "state": "MERGED",
+      "author": "smhendrickson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-28T11:41:53Z",
+      "updatedAt": "2023-03-29T13:22:24Z",
+      "baseRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "baseRefName": "main",
+      "baseRefOid": "ef57656513b93eca495008ad45c8456b4868513f",
+      "headRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "headRefName": "motivation",
+      "headRefOid": "1c8bc1bc4ffd8562948cda30d4984b349bc1d242",
+      "closedAt": "2023-03-29T13:22:24Z",
+      "mergedAt": "2023-03-29T13:22:24Z",
+      "mergedBy": "smhendrickson",
+      "mergeCommit": {
+        "oid": "5bca13df0e0820f4ab3c0b5344848b9c5cf43f97"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOI5fDsM5NLS_6",
+      "title": "rename for I-D linter 50 char limit",
+      "url": "https://github.com/smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance/pull/4",
+      "state": "MERGED",
+      "author": "smhendrickson",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-29T14:56:52Z",
+      "updatedAt": "2023-03-30T13:26:21Z",
+      "baseRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "baseRefName": "main",
+      "baseRefOid": "5bca13df0e0820f4ab3c0b5344848b9c5cf43f97",
+      "headRepository": "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance",
+      "headRefName": "rename",
+      "headRefOid": "81990be0af1e710b3f00b3beda39e9751e25c9dd",
+      "closedAt": "2023-03-30T13:26:21Z",
+      "mergedAt": "2023-03-30T13:26:20Z",
+      "mergedBy": "smhendrickson",
+      "mergeCommit": {
+        "oid": "6d5b7b327c0e5d0f48f6b4ed9ded277d29b0c869"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
