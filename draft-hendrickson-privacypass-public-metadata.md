@@ -52,7 +52,7 @@ information visible to the Client, Attester, Issuer, and Origin into each token.
 
 The basic Privacy Pass issuance protocols as specified in {{BASIC-PROTOCOL}} and resulting
 tokens convey only a single bit of information: whether or not the token is valid. However,
-it is possible for tokens to be issued with additional information aggreed upon by Client,
+it is possible for tokens to be issued with additional information agreed upon by Client,
 Attester, and Issuer during issuance. This information, sometimes referred to as public
 metadata, allows Privacy Pass applications to encode deployment-specific information that is
 necessary for their use case.
