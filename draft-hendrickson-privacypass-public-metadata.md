@@ -34,6 +34,7 @@ author:
 normative:
   AUTHSCHEME: I-D.draft-ietf-privacypass-auth-scheme
   BASIC-PROTOCOL: I-D.draft-ietf-privacypass-protocol
+  ARCHITECTURE: I-D.draft-ietf-privacypass-architecture
   POPRF: I-D.irtf-cfrg-voprf
   PBRSA: I-D.amjad-cfrg-partially-blind-rsa
   TOKEN-EXTENSION:
@@ -514,11 +515,22 @@ Since Clients truncate `token_key_id` in each `TokenRequest`, Issuers should
 ensure that the truncated form of new key IDs do not collide with other
 truncated key IDs in rotation.
 
-
 # Security Considerations
 
-TODO Security
+By design, public metadata is known to both Client and Issuer. The mechanism by which public
+metadata is made available to Client and Issuer is out of scope for this document. The
+privacy considerations in {{ARCHITECTURE}} offer a guide for determining what type of
+metadata is appropriate to include, and in what circumstances.
 
+Each metadata use case requires careful consideration to ensure it does not regress the
+intended privacy properties of Privacy Pass. In general, however, metadata is meant primarily
+for simplfiying Privacy Pass deployments, and such simplifications require analysis so as to
+not invalidate Client privacy. As an example of metadata that would not regress
+privacy, consider the use case of metadata for differentiating keys. It is currently possible
+for an Issuer to assign a unique token key for each metadata value they support. This
+design pattern yields an increase in keys and can therefore complicate deployments. As
+an alternative, deployments can use one of the issuance protocols in this document with
+a single issuance key and different metadata values as the issuance public metadata.
 
 # IANA Considerations {#iana}
 
@@ -553,8 +565,8 @@ The contents of this token type registry entry are as follows:
 * Private Metadata: N
 * Nk: 256
 * Nid: 32
-* Notes: The RSABSSA-SHA384-PSS-Deterministic and
-  RSABSSA-SHA384-PSSZERO-Deterministic variants are supported
+* Notes: The RSAPBSSA-SHA384-PSS-Deterministic and
+  RSAPBSSA-SHA384-PSSZERO-Deterministic variants are supported; see {{Section 6 of !PBRSA}}
 
 --- back
 
