@@ -5,8 +5,8 @@
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
 Intended status: Informational                                C. A. Wood
-Expires: 23 December 2023                               Cloudflare, Inc.
-                                                            21 June 2023
+Expires: 23 May 2024                                    Cloudflare, Inc.
+                                                        20 November 2023
 
 
                         Public Metadata Issuance
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 December 2023.
+   This Internet-Draft will expire on 23 May 2024.
 
 Copyright Notice
 
@@ -598,7 +598,24 @@ struct {
 
 7.  Security Considerations
 
-   TODO Security
+   By design, public metadata is known to both Client and Issuer.  The
+   mechanism by which public metadata is made available to Client and
+   Issuer is out of scope for this document.  The privacy considerations
+   in [ARCHITECTURE] offer a guide for determining what type of metadata
+   is appropriate to include, and in what circumstances.
+
+   Each metadata use case requires careful consideration to ensure it
+   does not regress the intended privacy properties of Privacy Pass.  In
+   general, however, metadata is meant primarily for simplfiying Privacy
+   Pass deployments, and such simplifications require analysis so as to
+   not invalidate Client privacy.  As an example of metadata that would
+   not regress privacy, consider the use case of metadata for
+   differentiating keys.  It is currently possible for an Issuer to
+   assign a unique token key for each metadata value they support.  This
+   design pattern yields an increase in keys and can therefore
+   complicate deployments.  As an alternative, deployments can use one
+   of the issuance protocols in this document with a single issuance key
+   and different metadata values as the issuance public metadata.
 
 8.  IANA Considerations
 
@@ -654,32 +671,40 @@ struct {
 
    *  Nid: 32
 
-   *  Notes: The RSABSSA-SHA384-PSS-Deterministic and RSABSSA-SHA384-
-      PSSZERO-Deterministic variants are supported
+   *  Notes: The RSAPBSSA-SHA384-PSS-Deterministic and RSAPBSSA-SHA384-
+      PSSZERO-Deterministic variants are supported; see Section 6 of
+      [PBRSA]
 
 9.  References
 
 9.1.  Normative References
 
+   [ARCHITECTURE]
+              Davidson, A., Iyengar, J., and C. A. Wood, "The Privacy
+              Pass Architecture", Work in Progress, Internet-Draft,
+              draft-ietf-privacypass-architecture-16, 25 September 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-architecture-16>.
+
    [AUTHSCHEME]
               Pauly, T., Valdez, S., and C. A. Wood, "The Privacy Pass
               HTTP Authentication Scheme", Work in Progress, Internet-
-              Draft, draft-ietf-privacypass-auth-scheme-10, 8 May 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-
-              privacypass-auth-scheme-10>.
+              Draft, draft-ietf-privacypass-auth-scheme-15, 23 October
+              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              privacypass-auth-scheme-15>.
 
    [BASIC-PROTOCOL]
-              Celi, S., Davidson, A., Faz-Hernandez, A., Valdez, S., and
-              C. A. Wood, "Privacy Pass Issuance Protocol", Work in
-              Progress, Internet-Draft, draft-ietf-privacypass-protocol-
-              10, 6 March 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-privacypass-protocol-10>.
+              Celi, S., Davidson, A., Valdez, S., and C. A. Wood,
+              "Privacy Pass Issuance Protocol", Work in Progress,
+              Internet-Draft, draft-ietf-privacypass-protocol-16, 3
+              October 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-privacypass-protocol-16>.
 
    [PBRSA]    Amjad, G. A., Hendrickson, S., Wood, C. A., and K. W. L.
               Yeo, "Partially Blind RSA Signatures", Work in Progress,
-              Internet-Draft, draft-amjad-cfrg-partially-blind-rsa-00,
-              13 March 2023, <https://datatracker.ietf.org/doc/html/
-              draft-amjad-cfrg-partially-blind-rsa-00>.
+              Internet-Draft, draft-amjad-cfrg-partially-blind-rsa-01, 6
+              July 2023, <https://datatracker.ietf.org/doc/html/draft-
+              amjad-cfrg-partially-blind-rsa-01>.
 
    [POPRF]    Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
               Wood, "Oblivious Pseudorandom Functions (OPRFs) using
@@ -716,9 +741,8 @@ struct {
 9.2.  Informative References
 
    [DSS]      "Digital Signature Standard (DSS)", National Institute of
-              Standards and Technology report,
-              DOI 10.6028/nist.fips.186-4, July 2013,
-              <https://doi.org/10.6028/nist.fips.186-4>.
+              Standards and Technology, DOI 10.6028/nist.fips.186-4,
+              July 2013, <https://doi.org/10.6028/nist.fips.186-4>.
 
 Acknowledgments
 
