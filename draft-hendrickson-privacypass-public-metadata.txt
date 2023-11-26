@@ -5,8 +5,8 @@
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
 Intended status: Informational                                C. A. Wood
-Expires: 23 May 2024                                    Cloudflare, Inc.
-                                                        20 November 2023
+Expires: 29 May 2024                                    Cloudflare, Inc.
+                                                        26 November 2023
 
 
                         Public Metadata Issuance
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 May 2024.
+   This Internet-Draft will expire on 29 May 2024.
 
 Copyright Notice
 
@@ -102,7 +102,7 @@ Table of Contents
    The basic Privacy Pass issuance protocols as specified in
    [BASIC-PROTOCOL] and resulting tokens convey only a single bit of
    information: whether or not the token is valid.  However, it is
-   possible for tokens to be issued with additional information aggreed
+   possible for tokens to be issued with additional information agreed
    upon by Client, Attester, and Issuer during issuance.  This
    information, sometimes referred to as public metadata, allows Privacy
    Pass applications to encode deployment-specific information that is
