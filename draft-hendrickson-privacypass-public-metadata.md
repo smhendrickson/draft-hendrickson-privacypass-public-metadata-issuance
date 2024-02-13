@@ -376,7 +376,7 @@ token_input = concat(0xDA7A, // Token type field is 2 bytes long
 blinded_msg, blind_inv = Blind(pkI, PrepareIdentity(token_input), extensions)
 ~~~
 
-Where  `PrepareIdentity` is defined in {{Section 6 of !PBRSA}} and `Blind` is defined in {{Section 4.2 of !PBRSA}}
+Where `PrepareIdentity` is defined in {{Section 6 of !PBRSA}} and `Blind` is defined in {{Section 4.2 of !PBRSA}}
 
 The Client stores the `nonce`, `challenge_digest`, and `extensions` values locally for use
 when finalizing the issuance protocol to produce a token (as described in {{public-finalize}}).
