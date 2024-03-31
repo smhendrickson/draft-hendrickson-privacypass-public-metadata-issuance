@@ -5,8 +5,8 @@
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
 Intended status: Informational                                C. A. Wood
-Expires: 29 May 2024                                    Cloudflare, Inc.
-                                                        26 November 2023
+Expires: 2 October 2024                                 Cloudflare, Inc.
+                                                           31 March 2024
 
 
                         Public Metadata Issuance
@@ -53,11 +53,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 May 2024.
+   This Internet-Draft will expire on 2 October 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -702,9 +702,9 @@ struct {
 
    [PBRSA]    Amjad, G. A., Hendrickson, S., Wood, C. A., and K. W. L.
               Yeo, "Partially Blind RSA Signatures", Work in Progress,
-              Internet-Draft, draft-amjad-cfrg-partially-blind-rsa-01, 6
-              July 2023, <https://datatracker.ietf.org/doc/html/draft-
-              amjad-cfrg-partially-blind-rsa-01>.
+              Internet-Draft, draft-amjad-cfrg-partially-blind-rsa-02,
+              10 January 2024, <https://datatracker.ietf.org/doc/html/
+              draft-amjad-cfrg-partially-blind-rsa-02>.
 
    [POPRF]    Davidson, A., Faz-Hernandez, A., Sullivan, N., and C. A.
               Wood, "Oblivious Pseudorandom Functions (OPRFs) using
