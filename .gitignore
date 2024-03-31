@@ -17,7 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-hendrickson-privacypass-public-metadata-issuance.xml
+draft-ietf-privacypass-public-metadata-issuance.xml
 package-lock.json
 report.xml
 !requirements.txt
