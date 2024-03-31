@@ -1,10 +1,10 @@
 ---
-title: "Public Metadata Issuance"
-abbrev: "Public Metadata Issuance"
+title: "Privacy Pass Issuance Protocols with Public Metadata"
+abbrev: "Privacy Pass Issuance Protocols with Public Metadata"
 category: info
 
-docname: draft-hendrickson-privacypass-public-metadata-issuance-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+docname: draft-ietf-privacypass-public-metadata-issuance-latest
+submissiontype: IETF
 number:
 date:
 consensus: true
@@ -20,8 +20,8 @@ venue:
   type: "Working Group"
   mail: "privacy-pass@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/privacy-pass/"
-  github: "smhendrickson/draft-hendrickson-privacypass-public-metadata-issuance"
-  latest: "https://smhendrickson.github.io/draft-hendrickson-privacypass-public-metadata-issuance/draft-hendrickson-privacypass-public-metadata-issuance.html"
+  github: "ietf-wg-privacypass/draft-ietf-privacypass-public-metadata-issuance"
+  latest: "https://ietf-wg-privacypass.github.io/draft-ietf-privacypass-public-metadata-issuance/draft-ietf-privacypass-public-metadata-issuance.html"
 
 author:
  -
