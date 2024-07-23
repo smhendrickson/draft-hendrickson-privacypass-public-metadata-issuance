@@ -5,8 +5,8 @@
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
 Intended status: Informational                                C. A. Wood
-Expires: 2 October 2024                                 Cloudflare, Inc.
-                                                           31 March 2024
+Expires: 24 January 2025                                Cloudflare, Inc.
+                                                            23 July 2024
 
 
                         Public Metadata Issuance
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 October 2024.
+   This Internet-Draft will expire on 24 January 2025.
 
 Copyright Notice
 
@@ -144,8 +144,8 @@ Table of Contents
    basic Privacy Pass issuance protocols (types 0x0001 and 0x0002), the
    only information available to all parties is the choice of Issuer,
    expressed through the TokenChallenge.  If one wants to differentiate
-   bits of information at the origin, many TokenChallenges must be sent,
-   one for each Issuer that attests to the bit required.
+   bits of information at the origin, many PrivateToken challenge must
+   be sent, one for each Issuer that attests to the bit required.
 
    For example, if a deployment was built that attested to an app’s
    published state in an app store, it requires 1 bit {published,

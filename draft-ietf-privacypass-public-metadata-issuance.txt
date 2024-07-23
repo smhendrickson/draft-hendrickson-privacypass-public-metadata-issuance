@@ -4,8 +4,8 @@
 
 Privacy Pass                                              S. Hendrickson
 Internet-Draft                                                    Google
-Intended status: Informational                             31 March 2024
-Expires: 2 October 2024
+Intended status: Informational                              23 July 2024
+Expires: 24 January 2025
 
 
           Privacy Pass Issuance Protocols with Public Metadata
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 October 2024.
+   This Internet-Draft will expire on 24 January 2025.
 
 Copyright Notice
 
