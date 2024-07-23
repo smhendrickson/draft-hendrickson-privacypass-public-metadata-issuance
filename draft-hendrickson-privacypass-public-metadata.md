@@ -82,7 +82,7 @@ The following terms are used throughout this document to describe the protocol o
 Public metadata enables Privacy Pass deployments that share information between Clients, Attesters,
 Issuers and Origins. In the basic Privacy Pass issuance protocols (types 0x0001 and 0x0002), the only
 information available to all parties is the choice of Issuer, expressed through the TokenChallenge.
-If one wants to differentiate bits of information at the origin, many TokenChallenges must be sent,
+If one wants to differentiate bits of information at the origin, many PrivateToken challenge must be sent,
 one for each Issuer that attests to the bit required.
 
 For example, if a deployment was built that attested to an app’s published state in an app store,
@@ -376,7 +376,7 @@ token_input = concat(0xDA7A, // Token type field is 2 bytes long
 blinded_msg, blind_inv = Blind(pkI, PrepareIdentity(token_input), extensions)
 ~~~
 
-Where  `PrepareIdentity` is defined in {{Section 6 of !PBRSA}} and `Blind` is defined in {{Section 4.2 of !PBRSA}}
+Where `PrepareIdentity` is defined in {{Section 6 of !PBRSA}} and `Blind` is defined in {{Section 4.2 of !PBRSA}}
 
 The Client stores the `nonce`, `challenge_digest`, and `extensions` values locally for use
 when finalizing the issuance protocol to produce a token (as described in {{public-finalize}}).
